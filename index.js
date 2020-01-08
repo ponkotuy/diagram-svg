@@ -33,36 +33,69 @@ mainLine.stations.forEach((station, idx) => {
   station['idx'] = idx;
 });
 
-const HEIGHT = 480;
-const STATION_WIDTH = 40;
-const LINE_HEIGHT = 30;
-const stationPosition = {};
+const STATION_HEIGHT = 40;
+const LINE_WIDTH = 28;
+const STATION_FONT = {'font-size': 24};
+const mainLineWidth = LINE_WIDTH * trains.map(t => t.count).reduce((x, y) => x + y);
 
-mainLine.stations.forEach(station => {
-  stationPosition[station.id] = {
-    x: (STATION_WIDTH >> 1) + station.idx * STATION_WIDTH,
-    y: (LINE_HEIGHT >> 1)
-  }
+const calcPositions = () => {
+  const positions = {};
+  mainLine.stations.forEach(station => {
+    positions[station.id] = {
+      x: (LINE_WIDTH >> 1),
+      y: (STATION_HEIGHT >> 1) + station.idx * STATION_HEIGHT
+    }
+  });
+
+  subLines.forEach((line, lineIdx) => {
+    const startIdx = mainLine.stations.find(st => st.id === line.stations[0].id).idx;
+    line.stations.slice(1).forEach((station, idx) => {
+      positions[station.id] = {
+        x: (LINE_WIDTH >> 1) + mainLineWidth,
+        y: (STATION_HEIGHT >> 1) + (startIdx + idx + 1) * STATION_HEIGHT
+      }
+    });
+  });
+  return positions;
+};
+
+const stationPosition = calcPositions();
+
+const snap = Snap('#svg');
+let mainStationNameSize = 0;
+
+mainLine.stations.forEach((st, idx) => {
+  const pos = stationPosition[st.id];
+  st.text = snap.text(0, pos.y + 12, st.name);
+  st.text.attr(STATION_FONT);
+  mainStationNameSize = Math.max(mainStationNameSize, st.text.node.getBBox().width)
 });
 
-subLines.forEach((line, lineIdx) => {
-  const startIdx = mainLine.stations.find(st => st.id === line.stations[0].id).idx;
-  line.stations.slice(1).forEach((station, idx) => {
-    stationPosition[station.id] = {
-      x: (STATION_WIDTH >> 1) + (startIdx + idx + 1) * STATION_WIDTH,
-      y: (LINE_HEIGHT >> 1) + LINE_HEIGHT * 6
-    }
+let subStationNameSize = 0;
+
+const subStationNameX = mainStationNameSize + mainLineWidth + 12;
+subLines.forEach(line => {
+  line.stations.slice(1).forEach(station => {
+    const pos = stationPosition[station.id];
+    station.text = snap.text(subStationNameX, pos.y + 12, station.name);
+    station.text.attr(STATION_FONT);
   });
 });
 
-const snap = Snap('#svg');
 let count = 0;
 
 trains.forEach(train => {
   for (let i = 0; i < train.count; i++) {
+    let before = null;
     train.stations.forEach(station => {
-      const pos = stationPosition[station];
-      snap.circle(pos.x, HEIGHT - (pos.y + count * LINE_HEIGHT), STATION_WIDTH >> 3);
+      const st_pos = stationPosition[station];
+      const pos = {x: mainStationNameSize + 12 + st_pos.x + count * LINE_WIDTH, y: st_pos.y};
+      snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3);
+      if(before) {
+        const line = snap.line(before.x, before.y, pos.x, pos.y);
+        line.attr({strokeWidth: 2, stroke: 'black'});
+      }
+      before = pos;
     });
     count++;
   }
