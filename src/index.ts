@@ -1,4 +1,6 @@
 
+import Snap = require('snapsvg');
+
 const mainLine = {
   id: 1,
   stations: [
