@@ -1,5 +1,4 @@
-
-import Snap = require('snapsvg');
+import Snap from 'snapsvg';
 
 const mainLine = {
   id: 1,
