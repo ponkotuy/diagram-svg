@@ -4,11 +4,14 @@
     "watch": "webpack -w"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/snapsvg": "^0.5.0",
+    "lodash": "^4.17.15",
+    "snapsvg-cjs": "0.0.6",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
-    "snapsvg": "^0.5.1"
+    "webpack-cli": "^3.3.10"
   },
   "private": true
 }

@@ -1,6 +1,7 @@
 module.exports = {
   mode: "development",
   entry: "./src/index.ts",
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -10,6 +11,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["ts"]
+    extensions: [".ts"]
   }
 };
