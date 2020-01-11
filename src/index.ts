@@ -1,7 +1,7 @@
 import Raphael = require('raphael');
 import {Drawer} from "./drawer";
 import {Line} from "./line";
-import {Train} from "./train";
+import {Train, TrainObj} from "./train";
 
 const mainLine = {
   id: 1,
@@ -18,17 +18,19 @@ const subLines = [
     id: 2,
     stations: [
       {id: 61, name: '堀ノ内'},
-      {id: 64, name: '浦賀'}
+      {id: 99, name: '浦賀'}
     ]
   }
 ];
-const trains = [
+const trains: TrainObj[] = [
   {
     stations: [50, 59, 61, 67],
+    speed: 7,
     count: 3
   },
   {
-    stations: [50, 58, 59, 61, 64],
+    stations: [50, 58, 59, 61, 99],
+    speed: 1,
     count: 3
   }
 ];

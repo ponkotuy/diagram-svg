@@ -1,10 +1,10 @@
 import {Line, Station, Position} from "./line";
-import {Train} from "./train";
+import {Speed, Train} from "./train";
 import _ = require('lodash');
 
 const STATION_HEIGHT = 40;
 const TRAIN_WIDTH = 28;
-const STATION_FONT = {'font-size': 24};
+const STATION_FONT = {'font-size': 24, 'text-anchor': 'start'};
 
 export class Drawer {
   readonly snap: RaphaelPaper;
@@ -49,20 +49,38 @@ export class Drawer {
 
   drawTrain() {
     this.trains.map(train => {
+      const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
         let before = null;
+        let beforeStation = null;
         train.stations.forEach(station => {
           const stPos = this.stationPosition[station];
           const pos = {x: this.mainLineTextMaxSize + 12 + stPos.x, y: stPos.y + 12};
-          this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3);
+          this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3)
+            .attr({stroke: font.color, fill: font.color});
           if(before) {
             const line = this.snap.path(`M${before.x},${before.y} L${pos.x},${pos.y}`);
-            line.attr({strokeWidth: 2, stroke: 'black'});
+            line.attr({"stroke-width": font.width, stroke: font.color});
           }
           before = pos;
           this.stationPosition[station] = {x: stPos.x + TRAIN_WIDTH, y: stPos.y};
+          for (let s = beforeStation + 1; s < station; s++) {
+            const target = this.stationPosition[s];
+            if(target) {
+              this.stationPosition[s] = {x: target.x + TRAIN_WIDTH, y: target.y}
+            }
+          }
+          beforeStation = station;
         });
       }
     })
   }
+}
+
+function fontFromSpeed(speed: Speed) {
+  if(speed == 1) return {color: 'black', width: 2};
+  if(speed <= 4) return {color: 'cyan', width: 2};
+  if(speed <= 7) return {color: 'red', width: 3};
+  if(speed == 8) return {color: 'black', width: 3};
+  return {color: 'blue', width: 3};
 }
