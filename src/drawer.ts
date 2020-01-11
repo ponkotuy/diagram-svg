@@ -1,5 +1,5 @@
 import {Line, Station, Position} from "./line";
-import Snap from 'snapsvg-cjs';
+import {Train} from "./train";
 import _ = require('lodash');
 
 const STATION_HEIGHT = 40;
@@ -7,14 +7,15 @@ const TRAIN_WIDTH = 28;
 const STATION_FONT = {'font-size': 24};
 
 export class Drawer {
-  readonly snap: Snap;
+  readonly snap: RaphaelPaper;
   readonly mainLine: Line;
   readonly trains: Train[];
   readonly subLines: Line[];
-  stationPosition: { [k: number]: Position };
+  stationPosition: { [k: number]: Position } = {};
   mainLineTextMaxSize = 0;
 
-  constructor(snap: Snap, main: Line, subs: Line[], trains: Train[]) {
+  constructor(snap: RaphaelPaper, main: Line, subs: Line[], trains: Train[]) {
+    this.snap = snap;
     this.mainLine = main;
     this.trains = trains;
     this.subLines = subs;
@@ -52,10 +53,10 @@ export class Drawer {
         let before = null;
         train.stations.forEach(station => {
           const stPos = this.stationPosition[station];
-          const pos = {x: this.mainLineTextMaxSize + 12 + stPos.x, y: stPos.y};
+          const pos = {x: this.mainLineTextMaxSize + 12 + stPos.x, y: stPos.y + 12};
           this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3);
           if(before) {
-            const line = this.snap.line(before.x, before.y, pos.x, pos.y);
+            const line = this.snap.path(`M${before.x},${before.y} L${pos.x},${pos.y}`);
             line.attr({strokeWidth: 2, stroke: 'black'});
           }
           before = pos;

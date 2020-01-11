@@ -1,4 +1,4 @@
-class Train {
+export class Train {
   readonly stations: number[];
   readonly count: number;
 

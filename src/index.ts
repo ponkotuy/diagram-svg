@@ -1,6 +1,7 @@
+import Raphael = require('raphael');
 import {Drawer} from "./drawer";
 import {Line} from "./line";
-import Snap from 'snapsvg-cjs';
+import {Train} from "./train";
 
 const mainLine = {
   id: 1,
@@ -32,7 +33,7 @@ const trains = [
   }
 ];
 
-const snap = new Snap('#svg');
+const snap = Raphael('svg', 640, 480);
 const main = new Line(mainLine);
 const sub = subLines.map(line => new Line(line));
 const ts = trains.map(train => new Train(train));
