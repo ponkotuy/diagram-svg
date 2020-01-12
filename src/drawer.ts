@@ -1,6 +1,7 @@
 import {Line, Station, Position} from "./line";
 import {Speed, Train} from "./train";
 import _ = require('lodash');
+import Raphael = require('raphael');
 
 const STATION_HEIGHT = 40;
 const TRAIN_WIDTH = 28;
@@ -13,9 +14,12 @@ export class Drawer {
   readonly subLines: Line[];
   stationPosition: { [k: number]: Position } = {};
   mainLineTextMaxSize = 0;
+  snapWidth = 640;
+  snapHeight = 480;
+  snapId = 'svg';
 
-  constructor(snap: RaphaelPaper, main: Line, subs: Line[], trains: Train[]) {
-    this.snap = snap;
+  constructor(main: Line, subs: Line[], trains: Train[]) {
+    this.snap = Raphael(this.snapId, this.snapWidth, this.snapHeight);
     this.mainLine = main;
     this.trains = trains;
     this.subLines = subs;
@@ -56,8 +60,9 @@ export class Drawer {
         train.stations.forEach(station => {
           const stPos = this.stationPosition[station];
           const pos = {x: this.mainLineTextMaxSize + 12 + stPos.x, y: stPos.y + 12};
-          this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3)
+          const circle = this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3)
             .attr({stroke: font.color, fill: font.color});
+          this.expandSnap(circle);
           if(before) {
             const line = this.snap.path(`M${before.x},${before.y} L${pos.x},${pos.y}`);
             line.attr({"stroke-width": font.width, stroke: font.color});
@@ -74,6 +79,21 @@ export class Drawer {
         });
       }
     })
+  }
+
+  expandSnap(elem: RaphaelElement) {
+    const box = elem.getBBox();
+    const requiredY = box.y2 + (STATION_HEIGHT >> 1);
+    if(this.snapWidth < box.x2 || this.snapHeight < requiredY) {
+      const x = Math.ceil(Math.max(this.snapWidth, box.x2));
+      const y = Math.ceil(Math.max(this.snapHeight, requiredY));
+      this.snap.setSize(x, y);
+      const svg = document.getElementById(this.snapId);
+      svg.setAttribute('width', `${x}`);
+      svg.setAttribute('height', `${y}`);
+      this.snapWidth = x;
+      this.snapHeight = y;
+    }
   }
 }
 
