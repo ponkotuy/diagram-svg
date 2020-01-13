@@ -2,11 +2,14 @@
 import csv
 import json
 import sys
+import urllib.request
+from io import StringIO
 
 
-def read_csv(f):
-    with open(f, newline='') as f:
-        reader = csv.reader(f, delimiter=',', quotechar='"')
+def read_csv(url):
+    with urllib.request.urlopen(url) as f:
+        text = f.read().decode('utf-8')
+        reader = csv.reader(StringIO(text), delimiter=',', quotechar='"')
         result = [row for row in reader]
     return result
 
@@ -45,8 +48,8 @@ def parse_trains(xss):
     return [
         {
             'stations': remove_duplicate_stop(train_stops[i]),
-            'speed': speeds[i],
-            'count': counts[i]
+            'speed': int(speeds[i]),
+            'count': int(counts[i])
         } for i in range(len(speeds))
     ]
 

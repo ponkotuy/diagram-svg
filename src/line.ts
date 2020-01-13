@@ -27,8 +27,3 @@ type StationObj = {
   id: number,
   name: string
 }
-
-export type Position = {
-  x: number,
-  y: number
-}

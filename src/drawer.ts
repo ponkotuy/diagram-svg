@@ -1,18 +1,21 @@
-import {Line, Station, Position} from "./line";
+import {Line, Station} from "./line";
 import {Speed, Train} from "./train";
+import {Position} from "./position";
 import _ = require('lodash');
 import Raphael = require('raphael');
 
-const STATION_HEIGHT = 40;
-const TRAIN_WIDTH = 28;
-const STATION_FONT = {'font-size': 24, 'text-anchor': 'start'};
+const STATION_HEIGHT = 28;
+const TRAIN_WIDTH = 20;
+const STATION_TRAIN = 8;
+const STOP_SIZE = 5;
+const STATION_FONT = {'font-size': 16, 'text-anchor': 'start'};
 
 export class Drawer {
   readonly snap: RaphaelPaper;
   readonly mainLine: Line;
   readonly trains: Train[];
   readonly subLines: Line[];
-  stationPosition: { [k: number]: Position } = {};
+  stationState: { [k: number]: StationState } = {};
   mainLineTextMaxSize = 0;
   snapWidth = 640;
   snapHeight = 480;
@@ -25,20 +28,39 @@ export class Drawer {
     this.subLines = subs;
   }
 
-  drawLine(stations: Station[], x: number, baseY: number): any[] {
-    return stations.map((st, idx) => {
+  isMain(stationId: number) {
+    return 0 <= this.mainLine.stations.map(station => station.id).indexOf(stationId);
+  }
+
+  searchSubline(stationId) {
+    return _.find(this.subLines, line => 0 <= line.stations.map(st => st.id).indexOf(stationId));
+  }
+
+  draw() {
+    this.drawMain();
+    this.drawSub();
+    this.drawTrain();
+  }
+
+  drawStations(stations: Station[], x: number, baseY: number): number {
+    const texts = stations.map((st, idx) => {
       const posY = baseY + STATION_HEIGHT * (idx + 0.5);
-      this.stationPosition[st.id] = {x: x, y: posY};
-      const text = this.snap.text(x, posY + 12, st.name);
+      this.stationState[st.id] = new StationState(new Position(x, posY));
+      const text = this.snap.text(x, posY + STATION_TRAIN, st.name);
       text.attr(STATION_FONT);
       return text;
     });
+    const maxWidth = Math.max(...texts.map(text => text.getBBox().width));
+    stations.forEach(station => {
+      const state = this.stationState[station.id];
+      this.stationState[station.id] = new StationState(state.pos.addX(maxWidth));
+    });
+    return maxWidth
   }
 
   drawMain() {
-    this.drawLine(this.mainLine.stations, 0, 0).forEach(text => {
-      this.mainLineTextMaxSize = Math.max(this.mainLineTextMaxSize, text.node.getBBox().width)
-    });
+    const maxWidth = this.drawStations(this.mainLine.stations, 0, 0);
+    this.mainLineTextMaxSize = Math.max(this.mainLineTextMaxSize, maxWidth);
   }
 
   drawSub() {
@@ -47,36 +69,45 @@ export class Drawer {
     this.subLines.forEach((line, idx) => {
       const startIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.stations[0].id));
       const height = (startIdx + idx + 1.5) * STATION_HEIGHT;
-      this.drawLine(line.stations.slice(1), width, height);
+      this.drawStations(line.stations.slice(1), width, height);
     });
+  }
+
+  drawLineElement(font: Font, beforePos: Position, afterPos: Position) {
+    const line = this.snap.path(`M${beforePos.x + STATION_TRAIN},${beforePos.y + STATION_TRAIN} L${afterPos.x + STATION_TRAIN},${afterPos.y + STATION_TRAIN}`);
+    line.attr({"stroke-width": font.width, stroke: font.color});
+  }
+
+  drawLine(font: Font, before: number | null, after: number) {
+    if(before === null) return;
+    const beforePos = this.stationState[before].pos;
+    const afterPos = this.stationState[after].pos;
+    if(this.isMain(before) && !(this.isMain(after))) {
+      const sub = this.searchSubline(after);
+      const waypoint = sub.stations[1].id;
+      const waypointPos = this.stationState[waypoint].pos;
+      this.drawLineElement(font, beforePos, waypointPos);
+      this.drawLineElement(font, waypointPos, afterPos);
+    } else {
+      this.drawLineElement(font, beforePos, afterPos);
+    }
   }
 
   drawTrain() {
     this.trains.map(train => {
       const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
-        let before = null;
         let beforeStation = null;
         train.stations.forEach(station => {
-          const stPos = this.stationPosition[station];
-          const pos = {x: this.mainLineTextMaxSize + 12 + stPos.x, y: stPos.y + 12};
-          const circle = this.snap.circle(pos.x, pos.y, STATION_HEIGHT >> 3)
+          const stPos = this.stationState[station].pos;
+          const pos = {x: stPos.x + STATION_TRAIN, y: stPos.y + STATION_TRAIN};
+          const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
             .attr({stroke: font.color, fill: font.color});
           this.expandSnap(circle);
-          if(before) {
-            const line = this.snap.path(`M${before.x},${before.y} L${pos.x},${pos.y}`);
-            line.attr({"stroke-width": font.width, stroke: font.color});
-          }
-          before = pos;
-          this.stationPosition[station] = {x: stPos.x + TRAIN_WIDTH, y: stPos.y};
-          for (let s = beforeStation + 1; s < station; s++) {
-            const target = this.stationPosition[s];
-            if(target) {
-              this.stationPosition[s] = {x: target.x + TRAIN_WIDTH, y: target.y}
-            }
-          }
+          this.drawLine(font, beforeStation, station);
           beforeStation = station;
         });
+        this.updateStationState(train.stations);
       }
     })
   }
@@ -95,12 +126,48 @@ export class Drawer {
       this.snapHeight = y;
     }
   }
+
+  updateStationState(stations: number[]) {
+    if(this.isMain(stations[stations.length - 1])) {
+      this.incrStationState(stations[0], stations[stations.length - 1])
+    } else {
+      const sub = this.searchSubline(stations[stations.length - 1]);
+      this.incrStationState(stations[0], sub.stations[0].id);
+      this.incrStationState(sub.stations[1].id, stations[stations.length - 1]);
+    }
+  }
+
+  incrStationState(start: number, end: number) {
+    for(let i = start; i <= end; ++i) { this.stationState[i] = this.stationState[i].incr(); }
+  }
 }
 
+type Font = {color: string, width: number}
+
 function fontFromSpeed(speed: Speed) {
-  if(speed == 1) return {color: 'black', width: 2};
-  if(speed <= 4) return {color: 'cyan', width: 2};
-  if(speed <= 7) return {color: 'red', width: 3};
-  if(speed == 8) return {color: 'black', width: 3};
+  if(speed == 1) return {color: 'black', width: 1};
+  if(speed <= 4) return {color: 'cyan', width: 1};
+  if(speed <= 7) return {color: 'red', width: 2};
+  if(speed == 8) return {color: 'black', width: 2};
   return {color: 'blue', width: 3};
+}
+
+class StationState {
+  private readonly original: Position;
+  readonly pos: Position;
+  readonly count: number;
+
+  constructor(pos, count = 0) {
+    this.original = pos;
+    this.count = count;
+    this.pos = new Position(pos.x + count * TRAIN_WIDTH, pos.y);
+  }
+
+  incr() {
+    return new StationState(this.original, this.count + 1);
+  }
+
+  addX(add) {
+    return new StationState(this.original.addX(add), this.count)
+  }
 }

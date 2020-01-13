@@ -1,4 +1,7 @@
 {
+  "watch": {
+    "build": "src/*.ts"
+  },
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w"
@@ -7,6 +10,7 @@
     "@types/lodash": "^4.14.149",
     "@types/raphael": "^2.1.30",
     "lodash": "^4.17.15",
+    "npm-watch": "^0.6.0",
     "raphael": "^2.3.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",

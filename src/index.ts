@@ -8,8 +8,6 @@ fetch('./data/keikyu.json').then(res => {
     const sub = json.subLines.map(line => new Line(line));
     const ts = json.trains.map(train => new Train(train));
     const drawer = new Drawer(main, sub, ts);
-    drawer.drawMain();
-    drawer.drawSub();
-    drawer.drawTrain();
+    drawer.draw();
   });
 });
