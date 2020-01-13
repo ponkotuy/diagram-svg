@@ -2,7 +2,8 @@ import {Drawer} from "./drawer";
 import {Line} from "./line";
 import {Train} from "./train";
 
-document.getElementById('url_form').addEventListener('submit', set_url_event);
+document.getElementById('url_form').addEventListener('submit', setUrlEvent);
+document.getElementById('save_svg').addEventListener('click', saveSvg);
 
 const params = new URLSearchParams(location.search);
 
@@ -17,15 +18,15 @@ if(!input.value) {
   input.value = `${location.toString()}data/keikyu.json`;
 }
 
-set_url();
+setUrl();
 
-function set_url_event(event) {
+function setUrlEvent(event) {
   event.stopPropagation();
   event.preventDefault();
-  set_url();
+  setUrl();
 }
 
-function set_url() {
+function setUrl() {
   const params = new URLSearchParams();
   params.append('url', input.value);
   history.replaceState('', '', '?' + params.toString());
@@ -35,7 +36,6 @@ function set_url() {
 let drawer: Drawer | null = null;
 
 function draw(url) {
-  console.log(url);
   if(drawer) drawer.clear();
   fetch(url).then(res => {
     res.json().then(json => {
@@ -48,3 +48,11 @@ function draw(url) {
   });
 }
 
+function saveSvg() {
+  const svg = document.getElementById('svg').innerHTML;
+  const a = document.createElement('a');
+  const file = new Blob([svg], {type: 'image/svg+xml'});
+  a.href = URL.createObjectURL(file);
+  a.download = 'file.svg';
+  a.click();
+}
