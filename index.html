@@ -4,10 +4,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>diagram-svg</title>
-<!--    <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg.min.js"></script>-->
+    <link rel="stylesheet" href="node_modules/purecss/build/pure-min.css">
   </head>
   <body>
-    <svg id="svg"></svg>
-    <script src="dist/main.js"></script>
+  <form id="url_form" class="pure-form">
+    <fieldset>
+      <input id="url" type="url">
+      <button type="submit" class="pure-button pure-button-primary">Change JSON</button>
+    </fieldset>
+  </form>
+  <svg id="svg"></svg>
+  <script src="dist/main.js"></script>
   </body>
 </html>

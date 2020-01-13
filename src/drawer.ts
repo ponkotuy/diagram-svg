@@ -8,7 +8,7 @@ const STATION_HEIGHT = 28;
 const TRAIN_WIDTH = 20;
 const STATION_TRAIN = 8;
 const STOP_SIZE = 5;
-const STATION_FONT = {'font-size': 16, 'text-anchor': 'start'};
+const STATION_FONT = {'font-size': 20, 'text-anchor': 'start'};
 
 export class Drawer {
   readonly snap: RaphaelPaper;
@@ -68,7 +68,7 @@ export class Drawer {
     const width = this.mainLineTextMaxSize + trainWidth;
     this.subLines.forEach((line, idx) => {
       const startIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.stations[0].id));
-      const height = (startIdx + idx + 1.5) * STATION_HEIGHT;
+      const height = (startIdx + 2.5) * STATION_HEIGHT;
       this.drawStations(line.stations.slice(1), width, height);
     });
   }
@@ -140,16 +140,21 @@ export class Drawer {
   incrStationState(start: number, end: number) {
     for(let i = start; i <= end; ++i) { this.stationState[i] = this.stationState[i].incr(); }
   }
+
+  clear() {
+    this.snap.clear();
+  }
 }
 
 type Font = {color: string, width: number}
 
 function fontFromSpeed(speed: Speed) {
   if(speed == 1) return {color: 'black', width: 1};
-  if(speed <= 4) return {color: 'cyan', width: 1};
+  if(speed <= 4) return {color: '#0066ff', width: 1};
   if(speed <= 7) return {color: 'red', width: 2};
   if(speed == 8) return {color: 'black', width: 2};
-  return {color: 'blue', width: 3};
+  if(speed == 9) return {color: '#0066ff', width: 2};
+  return {color: '#003399', width: 2};
 }
 
 class StationState {
