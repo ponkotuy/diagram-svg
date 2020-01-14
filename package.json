@@ -10,6 +10,8 @@
     "@types/lodash": "^4.14.149",
     "@types/raphael": "^2.1.30",
     "lodash": "^4.17.15",
+    "materialize-css": "^1.0.0-rc.2",
+    "matter": "^0.2.0",
     "npm-watch": "^0.6.0",
     "raphael": "^2.3.0",
     "ts-loader": "^6.2.1",
