@@ -4,6 +4,5 @@
     "target": "ES2019",
     "module": "ES2015",
     "strict": true,
-    "esModuleInterop": true
   }
 }

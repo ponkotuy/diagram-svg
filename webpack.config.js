@@ -1,6 +1,12 @@
 module.exports = {
   mode: "development",
-  entry: "./src/index.ts",
+  entry: {
+    index: "./src/index.ts",
+    csv2json: "./src/csv2json.ts"
+  },
+  output: {
+    filename: '[name].js'
+  },
   devtool: 'inline-source-map',
   module: {
     rules: [

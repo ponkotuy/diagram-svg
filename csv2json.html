@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- -*- coding:utf-8 -*- -->
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>diagram-svg</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  <div style="margin: 30px;">
+    <form id="url_form" class="col s12">
+      <div class="row">
+        <div class="col s4">
+          <input id="url" class="pure-input-rounded" type="url">
+        </div>
+        <div class="col s1">
+          <button type="submit" class="btn waves-effect waves-light">ChangeJSON</button>
+        </div>
+      </div>
+    </form>
+
+    <h2>JSON生成のしかた</h2>
+
+    <h4>CSVを作る</h4>
+    <p>Google Spreadsheetが作るのもCSVの公開状態にするのも楽です。</p>
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTTjgpjWa1c_nRzUyKRIs_RLRJ1JFzRM2En78xBfQkg9WSZyDamsk1uy8sSOef-9KRY4W15-sqHounG/pub?gid=0&single=true&output=csv">京急のCSV</a><br>
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTTjgpjWa1c_nRzUyKRIs_RLRJ1JFzRM2En78xBfQkg9WSZyDamsk1uy8sSOef-9KRY4W15-sqHounG/pubhtml?gid=0&single=true">↑のスプレッドシート</a>
+    <p>上のURLのようにCSVを公開した状態にする。</p>
+    <p>フォーマットは1行目に列車速度(1-10の数値。各停1、急行/快速2-4、特急5-7、新幹線各停8、新幹線速達9、新幹線最速10)、2行目に列車本数、1列目に駅id、2列目に駅名、残りに停車駅に何かしらのチェックを入れる。</p>
+    <p>CORS対策でponkotuy.github.ioへGETの許可が必要。</p>
+
+    <h4>JSONに変換する</h4>
+    <p>このページの上記フォームに公開したURLを入れるとJSONをダウンロードする画面が出るのでダウンロードし、ダウンロードしたJSONを公開する。</p>
+    <script src="dist/csv2json.js"></script>
+  </div>
+  </body>
+</html>

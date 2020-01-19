@@ -9,8 +9,6 @@
   </head>
   <body>
   <div style="margin: 30px;">
-    <header>
-    </header>
     <h1>ダイヤ可視化ツール</h1>
     <h3>自作</h3>
     <div class="row">
@@ -57,55 +55,58 @@
       </div>
     </div>
 
-    <h3>なにこれ</h3>
-    <p>
-      鉄オタが作った、ある鉄道路線のダイヤの特徴を一目で可視化するツール。
-      具体的には上の自作サンプルを見て欲しい。
-      いつ見ても京急のダイヤは美しいことがわかる。
-    </p>
-    <p>
-      この図はJSONからJavaScriptを使って生成されている。
-      たとえば京急の図の元になっているJSONは <a href="./data/keikyu.json">ここ</a> にある。
-      これを参考にJSONを自作して公開すればみんな同じことができる。(CORSに引っ掛かる可能性が高いので https://ponkotuy.github.io/ からのGETを許可するようにする必要がある)
-      いつも通勤通学で使っている私鉄を可視化してもよいし、おれが考えた最強の京急のダイヤを作るもよし、好きにするといい。
-    </p>
-    <p>
-      作った図はSVGファイルとして保存することもできるから、プレゼンとかに埋め込むこともできる。
-      ソースコードは公開されているから自分のサイトに同じものを埋め込むこともできる。
-    </p>
+      <h3>なにこれ</h3>
+      <p>
+        鉄オタが作った、ある鉄道路線のダイヤの特徴を一目で可視化するツール。
+        具体的には上の自作サンプルを見て欲しい。
+        いつ見ても京急のダイヤは美しいことがわかる。
+      </p>
+      <p>
+        この図はJSONからJavaScriptを使って生成されている。
+        たとえば京急の図の元になっているJSONは <a href="./data/keikyu.json">ここ</a> にある。
+        これを参考にJSONを自作して公開すればみんな同じことができる。(CORSに引っ掛かる可能性が高いので https://ponkotuy.github.io/ からのGETを許可するようにする必要がある)
+        いつも通勤通学で使っている私鉄を可視化してもよいし、おれが考えた最強の京急のダイヤを作るもよし、好きにするといい。
+      </p>
+      <p>
+        作った図はSVGファイルとして保存することもできるから、プレゼンとかに埋め込むこともできる。
+        ソースコードは公開されているから自分のサイトに同じものを埋め込むこともできる。
+      </p>
 
-    <h3>JSON作成支援ツール</h3>
-    <p>
-      JSON書くのがかったるい向きには、Google SpreadsheetからJSONを自動生成するツールがある。
-      Excelはdisられがちだが、あれを越えるマスターデータ作成ソフトはなかなか無いのである。
-    </p>
-    <a href="https://github.com/ponkotuy/diagram-svg/tree/master/scripts"></a>
-    <p>詳細はドキュメントを読んで欲しいが、Pythonの開発環境を自力で立てるだけの能力とREADMEを読む能力が求められる。</p>
-    <p>要望が多そうならWeb版を作るので作者に絡んで欲しい。</p>
+      <h3><a href="csv2json.html">JSON作成支援ツール(Web)</a></h3>
+      <p>
+        JSON書くのがかったるい向きには、Google SpreadsheetからJSONを自動生成するツールがある。
+        Excelはdisられがちだが、あれを越えるマスターデータ作成ソフトはなかなか無いのである。
+      </p>
+        <p>
 
-    <h3>その他言いたいこと</h3>
-    <p>
-      LicenseはApache2にするつもりだったが面倒くさいので特に記述してない。
-      明記が必要なときは作者に連絡してほしい。
-    </p>
-    <p>
-      PRもissueも歓迎はするが特に対応するとは言っていない。
-      ぼくも出したPRやissueが人様の役に立ったことは稀だししょうがない。
-      精力的にレビューしたり新機能を実装するOSSエンジニアは本当に頭が下がる。
-    </p>
+        </p>
+      <a href="https://github.com/ponkotuy/diagram-svg/tree/master/scripts"></a>
+      <p>詳細はドキュメントを読んで欲しいが、Pythonの開発環境を自力で立てるだけの能力とREADMEを読む能力が求められる。</p>
+      <p>要望が多そうならWeb版を作るので作者に絡んで欲しい。</p>
 
-    <h3>技術的な話</h3>
-    <p>そのうちブログに書く。</p>
+      <h3>その他言いたいこと</h3>
+      <p>
+        LicenseはApache2にするつもりだったが面倒くさいので特に記述してない。
+        明記が必要なときは作者に連絡してほしい。
+      </p>
+      <p>
+        PRもissueも歓迎はするが特に対応するとは言っていない。
+        ぼくも出したPRやissueが人様の役に立ったことは稀だししょうがない。
+        精力的にレビューしたり新機能を実装するOSSエンジニアは本当に頭が下がる。
+      </p>
 
-    <h3>作者</h3>
-    <dl>
-      <dt>名前</dt><dd>ぽんこつ</dd>
-      <dt>Twitter</dt><dd><a href="https://twitter.com/ponkotuy">@ponkotuy</a></dd>
-      <dt>GitHub</dt><dd><a href="https://github.com/ponkotuy">ponkotuy</a></dd>
-      <dt>駅メモ</dt><dd>8947/9312駅(2020年1月15日現在)</dd>
-      <dt>好きな私鉄</dt><dd>京急, 名鉄</dd>
-    </dl>
-    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  </div>
+      <h3>技術的な話</h3>
+      <p>そのうちブログに書く。</p>
+
+      <h3>作者</h3>
+      <dl>
+        <dt>名前</dt><dd>ぽんこつ</dd>
+        <dt>Twitter</dt><dd><a href="https://twitter.com/ponkotuy">@ponkotuy</a></dd>
+        <dt>GitHub</dt><dd><a href="https://github.com/ponkotuy">ponkotuy</a></dd>
+        <dt>駅メモ</dt><dd>8947/9312駅(2020年1月15日現在)</dd>
+        <dt>好きな私鉄</dt><dd>京急, 名鉄</dd>
+      </dl>
+      <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    </div>
   </body>
 </html>
