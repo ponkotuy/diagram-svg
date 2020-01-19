@@ -7,8 +7,6 @@ const OPTIONS = {headers: {"Content-Type": "text/csv"}};
 
 document.getElementById('url_form').addEventListener('submit', saveJsonEvent);
 
-console.log("OK");
-
 function saveJsonEvent(event) {
   event.stopPropagation();
   event.preventDefault();
@@ -18,7 +16,6 @@ function saveJsonEvent(event) {
 function saveJSON() {
   const input = <HTMLInputElement> document.getElementById('url');
   const url = input.value;
-  console.log(url);
   fetch(url, OPTIONS).then(response => {
     response.text().then(text => {
       const records  = papa.parse(text).data;
