@@ -48,8 +48,8 @@ export class FirstParser {
     return train_stops.map((stops, idx) => {
       return {
         'stations': this.removeDuplicateStop(stops),
-        'speed': speeds[idx],
-        'count': counts[idx]
+        'speed': parseInt(speeds[idx]),
+        'count': parseInt(counts[idx])
       };
     });
   }
