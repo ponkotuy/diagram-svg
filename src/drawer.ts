@@ -15,6 +15,7 @@ export class Drawer {
   readonly mainLine: Line;
   readonly trains: Train[];
   readonly subLines: Line[];
+  readonly branchStations: number[] = [];
   stationState: { [k: number]: StationState } = {};
   mainLineTextMaxSize = 0;
   snapWidth = 640;
@@ -26,6 +27,7 @@ export class Drawer {
     this.mainLine = main;
     this.trains = trains;
     this.subLines = subs;
+    subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
   }
 
   isMain(stationId: number) {
@@ -78,18 +80,24 @@ export class Drawer {
     line.attr({"stroke-width": font.width, stroke: font.color});
   }
 
+  nextStation(target: number, next: number) {
+    const lineId = this.branchStations.indexOf(target);
+    if(lineId == -1) return ++target;
+    else {
+      const line = this.searchSubline(next);
+      if(line && line.stations.some(st => st.id == next)) return line.stations[1].id;
+      else return ++target;
+    }
+  }
+
   drawLine(font: Font, before: number | null, after: number) {
     if(before === null) return;
-    const beforePos = this.stationState[before].pos;
-    const afterPos = this.stationState[after].pos;
-    if(this.isMain(before) && !(this.isMain(after))) {
-      const sub = this.searchSubline(after);
-      const waypoint = sub.stations[1].id;
-      const waypointPos = this.stationState[waypoint].pos;
-      this.drawLineElement(font, beforePos, waypointPos);
-      this.drawLineElement(font, waypointPos, afterPos);
-    } else {
-      this.drawLineElement(font, beforePos, afterPos);
+    for(let i = before; i != after; ) {
+      const next = this.nextStation(i, after);
+      const origPos = this.stationState[i].pos;
+      const nextPos = this.stationState[next].pos;
+      this.drawLineElement(font, origPos, nextPos);
+      i = next;
     }
   }
 
@@ -150,8 +158,10 @@ type Font = {color: string, width: number}
 
 function fontFromSpeed(speed: Speed) {
   if(speed == 1) return {color: 'black', width: 1};
+  if(speed == 2) return {color: 'green', width: 1};
   if(speed <= 4) return {color: '#0066ff', width: 1};
-  if(speed <= 7) return {color: 'red', width: 2};
+  if(speed <= 6) return {color: 'orange', width: 2};
+  if(speed == 7) return {color: 'red', width: 2};
   if(speed == 8) return {color: 'black', width: 2};
   if(speed == 9) return {color: '#0066ff', width: 2};
   return {color: '#003399', width: 2};
