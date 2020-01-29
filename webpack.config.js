@@ -2,7 +2,8 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.ts",
-    csv2json: "./src/csv2json.ts"
+    csv2json: "./src/csv2json.ts",
+    menu: "./src/menu.ts"
   },
   output: {
     filename: '[name].js'
@@ -12,11 +13,14 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: "ts-loader"
+        loader: "ts-loader"
       }
     ]
   },
   resolve: {
-    extensions: [".ts"]
+    extensions: [".ts"],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.browser.min.js'
+    }
   }
 };
