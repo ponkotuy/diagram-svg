@@ -13,13 +13,19 @@ function saveJsonEvent(event) {
   saveJSON();
 }
 
+function getValueFromElementId(id) {
+  const input = <HTMLInputElement> document.getElementById(id);
+  return input.value;
+}
+
 function saveJSON() {
-  const input = <HTMLInputElement> document.getElementById('url');
-  const url = input.value;
+  const url = getValueFromElementId('url');
+  const title = getValueFromElementId('title');
+  const author = getValueFromElementId('author');
   fetch(url, OPTIONS).then(response => {
     response.text().then(text => {
       const records  = papa.parse(text).data;
-      const first = new FirstParser(records);
+      const first = new FirstParser(records, title, author);
       const result = JSON.stringify(first.parse(), null, 2);
       const a = document.createElement('a');
       const file = new Blob([result], {type: 'application/json'});

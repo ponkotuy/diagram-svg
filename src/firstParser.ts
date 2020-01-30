@@ -1,8 +1,12 @@
 export class FirstParser {
   readonly rows: string[][];
+  readonly title: string;
+  readonly author: string;
 
-  constructor(rows: string[][]) {
+  constructor(rows: string[][], title: string, author: string) {
     this.rows = rows;
+    this.title = title;
+    this.author = author;
   }
 
   parse() {
@@ -14,7 +18,9 @@ export class FirstParser {
     return {
       'mainLine': {'id': 1, 'stations': lines[0]},
       'subLines': subLines,
-      'trains': trains
+      'trains': trains,
+      'title': this.title,
+      'author': this.author
     };
   }
 
