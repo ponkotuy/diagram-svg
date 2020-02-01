@@ -16,6 +16,7 @@ export class Drawer {
   readonly trains: Train[];
   readonly subLines: Line[];
   readonly branchStations: number[] = [];
+  readonly stations: number[] = [];
   stationState: { [k: number]: StationState } = {};
   mainLineTextMaxSize = 0;
   snapWidth = 640;
@@ -27,6 +28,9 @@ export class Drawer {
     this.mainLine = main;
     this.trains = trains;
     this.subLines = subs;
+    this.stations = _(main.stations.map(st => st.id))
+      .concat(_.flatMap(subs, sub => sub.stations.map(st => st.id)))
+      .sort((a, b) => a - b).sortedUniq().value();
     subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
   }
 
@@ -80,13 +84,17 @@ export class Drawer {
     line.attr({"stroke-width": font.width, stroke: font.color});
   }
 
-  nextStation(target: number, next: number) {
+  nextStation(target: number, next: number): number {
+    const f = station => {
+      const next = this.stations.indexOf(station) + 1;
+      return this.stations[next];
+    };
     const lineId = this.branchStations.indexOf(target);
-    if(lineId == -1) return ++target;
+    if(lineId == -1) return f(target);
     else {
       const line = this.searchSubline(next);
-      if(line && line.stations.some(st => st.id == next)) return line.stations[1].id;
-      else return ++target;
+      if(line && line.stations.slice(1).some(st => st.id == next)) return line.stations[1].id;
+      else return f(target);
     }
   }
 
@@ -95,6 +103,7 @@ export class Drawer {
     for(let i = before; i != after; ) {
       const next = this.nextStation(i, after);
       const origPos = this.stationState[i].pos;
+      console.log(i, after, next);
       const nextPos = this.stationState[next].pos;
       this.drawLineElement(font, origPos, nextPos);
       i = next;
