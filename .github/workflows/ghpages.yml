@@ -5,6 +5,7 @@ on:
     branches:
       - master
 
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
+jobs:
+  runs:
+    using: 'docker'
+    image: 'Dockerfile'
