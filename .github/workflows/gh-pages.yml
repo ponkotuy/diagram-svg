@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -15,3 +15,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build TypeScript
       run: docker-compose build
+    - name: generate svg_list.json
+      run: ./scripts/create_svg_list.sh data2 > svg_list.json
+    - name: git push gh-pages
+      run: ./scripts/push_ghpages.sh
