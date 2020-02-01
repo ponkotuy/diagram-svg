@@ -16,7 +16,7 @@ export default class App extends Vue {
   }
 
   href(url) {
-    return `index.html?url=${url}`;
+    return `index.html?url=${url.file}`;
   }
 }
 

@@ -2,3 +2,4 @@ node_modules/
 dist/
 venv/
 .idea/
+svg_list.json
