@@ -103,7 +103,6 @@ export class Drawer {
     for(let i = before; i != after; ) {
       const next = this.nextStation(i, after);
       const origPos = this.stationState[i].pos;
-      console.log(i, after, next);
       const nextPos = this.stationState[next].pos;
       this.drawLineElement(font, origPos, nextPos);
       i = next;
