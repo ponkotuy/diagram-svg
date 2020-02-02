@@ -3,5 +3,7 @@
 git config --global user.name "ponkotuy-bot"
 git config --global user.email "web@ponkotuy.com"
 
-git checkout gh-pages
+git fetch
+git checkout -b origin/gh-pages
 git merge origin/master -m "Merge master"
+rm -f .gitignore
