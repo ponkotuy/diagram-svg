@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Setup Git
       run: ./scripts/setup_git.sh
     - name: Build Builder
