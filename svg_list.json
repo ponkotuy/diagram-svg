@@ -1,4 +1,5 @@
 [
 {"file":"data2/meitetsu_chita.json", "name":"名鉄知多半島方面", "author":"ponkotuy"}
+,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
 ,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
 ]
