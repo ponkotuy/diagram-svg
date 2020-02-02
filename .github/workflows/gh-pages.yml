@@ -15,8 +15,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup Git
       run: ./scripts/setup_git.sh
-    - name: Build TypeScript
+    - name: Build Builder
       run: docker-compose build
+    - name: Run Builder
+      run: docker-compose run builder
     - name: generate svg_list.json
       run: ./scripts/create_svg_list.sh data2 > svg_list.json
     - name: git push gh-pages
