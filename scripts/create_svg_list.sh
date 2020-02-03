@@ -7,7 +7,7 @@ fi
 
 echo '['
 first=1
-for file in `find $1 -maxdepth 1 -name "*.json"`; do
+for file in `find $1 -maxdepth 1 -name "*.json" | sort`; do
     if [ $first -eq 0 ]; then
        echo -n ","
     fi
