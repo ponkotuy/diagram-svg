@@ -154,7 +154,9 @@ export class Drawer {
   }
 
   incrStationState(start: number, end: number) {
-    for(let i = start; i <= end; ++i) { this.stationState[i] = this.stationState[i].incr(); }
+    for(let i = start; i <= end; ++i) {
+      if(this.stationState[i] != null) this.stationState[i] = this.stationState[i].incr();
+    }
   }
 
   clear() {
