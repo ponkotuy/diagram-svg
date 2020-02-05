@@ -13,10 +13,10 @@ export class FirstParser {
     const lines = this.parseStations();
     const trains = this.parseTrains();
     const subLines = lines.slice(1).map((line, idx) => {
-      return {'id': idx + 2, 'stations': line}
+      return {'id': idx + 2, 'stations': line.stations, 'xPos': line.xPos}
     });
     return {
-      'mainLine': {'id': 1, 'stations': lines[0]},
+      'mainLine': {'id': 1, 'stations': lines[0].stations},
       'subLines': subLines,
       'trains': trains,
       'title': this.title,
@@ -26,11 +26,11 @@ export class FirstParser {
 
   parseStations() {
     const stationRows = this.rows.slice(2);
-    const lines = [[]];
+    const lines = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
       const [idRow, name] = row;
-      if(idRow) lines[lines.length - 1].push({id: parseInt(idRow), name: name});
-      else lines.push([])
+      if(name) lines[lines.length - 1].stations.push({id: parseInt(idRow), name: name});
+      else lines.push({xPos: parseInt(idRow) || 0, stations: []})
     });
     return lines;
   }

@@ -1,16 +1,19 @@
 export class Line {
   readonly id: number;
   readonly stations: Station[];
+  readonly xPos: number;
 
   constructor(line: LineObj) {
     this.id = line.id;
     this.stations = line.stations.map(st => new Station(st))
+    this.xPos = line.xPos || 0;
   }
 }
 
 type LineObj = {
   id: number,
   stations: StationObj[]
+  xPos: number | null;
 }
 
 export class Station {
