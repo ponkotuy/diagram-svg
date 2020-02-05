@@ -75,7 +75,7 @@ export class Drawer {
     this.subLines.forEach((line, idx) => {
       const startIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.stations[0].id));
       const height = (startIdx + 2.5) * STATION_HEIGHT;
-      this.drawStations(line.stations.slice(1), width, height);
+      this.drawStations(line.stations.slice(1), width + (line.xPos || 0) * TRAIN_WIDTH, height);
     });
   }
 

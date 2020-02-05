@@ -2,6 +2,7 @@
 {"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy"}
 ,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_chita.json", "name":"名鉄知多半島方面", "author":"ponkotuy"}
+,{"file":"data2/meitetsu_toyohashi.json", "name":"名鉄豊橋方面", "author":"ponkotuy"}
 ,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
 ,{"file":"data2/tobu_isesaki.json", "name":"東武伊勢崎線", "author":"ponkotuy"}
 ,{"file":"data2/tokyu_denentoshi.json", "name":"東急田園都市線", "author":"ponkotuy"}
