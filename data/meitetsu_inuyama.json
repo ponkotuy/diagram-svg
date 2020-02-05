@@ -200,7 +200,8 @@
           "id": 110,
           "name": "御嵩"
         }
-      ]
+      ],
+      "xPos": -10
     }
   ],
   "trains": [
@@ -389,5 +390,7 @@
       "speed": 1,
       "count": 2
     }
-  ]
+  ],
+  "title": "名鉄犬山方面",
+  "author": "ponkotuy"
 }
