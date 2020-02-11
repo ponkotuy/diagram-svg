@@ -1,5 +1,5 @@
 import {Drawer} from "./drawer";
-import {Line} from "./line";
+import {Line, SubLine} from "./line";
 import {Train} from "./train";
 
 document.getElementById('url_form').addEventListener('submit', setUrlEvent);
@@ -40,7 +40,7 @@ function draw(url) {
   fetch(url).then(res => {
     res.json().then(json => {
       const main = new Line(json.mainLine);
-      const sub = json.subLines.map(line => new Line(line));
+      const sub = json.subLines.map(line => new SubLine(line, main));
       const ts = json.trains.map(train => new Train(train));
       drawer = new Drawer(main, sub, ts);
       drawer.draw();

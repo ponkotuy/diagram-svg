@@ -1,4 +1,4 @@
-import {Line, Station} from "./line";
+import {Line, Station, SubLine} from "./line";
 import {Speed, Train} from "./train";
 import {Position} from "./position";
 import _ = require('lodash');
@@ -14,7 +14,7 @@ export class Drawer {
   readonly snap: RaphaelPaper;
   readonly mainLine: Line;
   readonly trains: Train[];
-  readonly subLines: Line[];
+  readonly subLines: SubLine[];
   readonly branchStations: number[] = [];
   readonly stations: number[] = [];
   stationState: { [k: number]: StationState } = {};
@@ -23,7 +23,7 @@ export class Drawer {
   snapHeight = 480;
   snapId = 'svg';
 
-  constructor(main: Line, subs: Line[], trains: Train[]) {
+  constructor(main: Line, subs: SubLine[], trains: Train[]) {
     this.snap = Raphael(this.snapId, this.snapWidth, this.snapHeight);
     this.mainLine = main;
     this.trains = trains;
@@ -32,10 +32,6 @@ export class Drawer {
       .concat(_.flatMap(subs, sub => sub.stations.map(st => st.id)))
       .sort((a, b) => a - b).sortedUniq().value();
     subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
-  }
-
-  isMain(stationId: number) {
-    return 0 <= this.mainLine.stations.map(station => station.id).indexOf(stationId);
   }
 
   searchSubline(stationId) {
@@ -72,10 +68,10 @@ export class Drawer {
   drawSub() {
     const trainWidth = this.trains.map(train => train.count).reduce((x, y) => x + y) * TRAIN_WIDTH;
     const width = this.mainLineTextMaxSize + trainWidth;
-    this.subLines.forEach((line, idx) => {
+    this.subLines.forEach(line => {
       const startIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.stations[0].id));
       const height = (startIdx + 2.5) * STATION_HEIGHT;
-      this.drawStations(line.stations.slice(1), width + (line.xPos || 0) * TRAIN_WIDTH, height);
+      this.drawStations(line.singleLineStations(), width + (line.xPos || 0) * TRAIN_WIDTH, height);
     });
   }
 
@@ -86,8 +82,8 @@ export class Drawer {
 
   nextStation(target: number, next: number): number {
     const f = station => {
-      const next = this.stations.indexOf(station) + 1;
-      return this.stations[next];
+      const nextIdx = this.stations.indexOf(station) + 1;
+      return this.stations[nextIdx] || next;
     };
     const lineId = this.branchStations.indexOf(target);
     if(lineId == -1) return f(target);
@@ -98,15 +94,19 @@ export class Drawer {
     }
   }
 
-  drawLine(font: Font, before: number | null, after: number) {
-    if(before === null) return;
+  // 通過・停車駅リストを返す
+  drawLine(font: Font, before: number | null, after: number): number[] {
+    if(before === null) return [];
+    const result = [before];
     for(let i = before; i != after; ) {
       const next = this.nextStation(i, after);
+      result.push(next);
       const origPos = this.stationState[i].pos;
       const nextPos = this.stationState[next].pos;
       this.drawLineElement(font, origPos, nextPos);
       i = next;
     }
+    return result;
   }
 
   drawTrain() {
@@ -114,16 +114,17 @@ export class Drawer {
       const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
         let beforeStation = null;
+        const allStations: Set<number> = new Set();
         train.stations.forEach(station => {
           const stPos = this.stationState[station].pos;
           const pos = {x: stPos.x + STATION_TRAIN, y: stPos.y + STATION_TRAIN};
           const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
             .attr({stroke: font.color, fill: font.color});
           this.expandSnap(circle);
-          this.drawLine(font, beforeStation, station);
+          this.drawLine(font, beforeStation, station).forEach(st => allStations.add(st));
           beforeStation = station;
         });
-        this.updateStationState(train.stations);
+        allStations.forEach(st => this.stationState[st] = this.stationState[st].incr());
       }
     })
   }
@@ -140,22 +141,6 @@ export class Drawer {
       svg.setAttribute('height', `${y}`);
       this.snapWidth = x;
       this.snapHeight = y;
-    }
-  }
-
-  updateStationState(stations: number[]) {
-    if(this.isMain(stations[stations.length - 1])) {
-      this.incrStationState(stations[0], stations[stations.length - 1])
-    } else {
-      const sub = this.searchSubline(stations[stations.length - 1]);
-      this.incrStationState(stations[0], sub.stations[0].id);
-      this.incrStationState(sub.stations[1].id, stations[stations.length - 1]);
-    }
-  }
-
-  incrStationState(start: number, end: number) {
-    for(let i = start; i <= end; ++i) {
-      if(this.stationState[i] != null) this.stationState[i] = this.stationState[i].incr();
     }
   }
 
@@ -190,9 +175,5 @@ class StationState {
 
   incr() {
     return new StationState(this.original, this.count + 1);
-  }
-
-  addX(add) {
-    return new StationState(this.original.addX(add), this.count)
   }
 }

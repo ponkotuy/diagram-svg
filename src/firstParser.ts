@@ -1,7 +1,10 @@
+import _ = require('lodash');
+
 export class FirstParser {
   readonly rows: string[][];
   readonly title: string;
   readonly author: string;
+  readonly forwardTransfers: Set<number> = new Set();
 
   constructor(rows: string[][], title: string, author: string) {
     this.rows = rows;
@@ -11,17 +14,25 @@ export class FirstParser {
 
   parse() {
     const lines = this.parseStations();
-    const trains = this.parseTrains();
+    const mainLine = {'id': 1, 'stations': lines[0].stations};
     const subLines = lines.slice(1).map((line, idx) => {
       return {'id': idx + 2, 'stations': line.stations, 'xPos': line.xPos}
     });
+    subLines.forEach(sub => this.addForwardTransfers(mainLine, sub));
+    const trains = this.parseTrains();
     return {
-      'mainLine': {'id': 1, 'stations': lines[0].stations},
+      'mainLine': mainLine,
       'subLines': subLines,
       'trains': trains,
       'title': this.title,
       'author': this.author
     };
+  }
+
+  private addForwardTransfers(main: Line, sub: Line) {
+    const mainStations = main.stations.map(st => st.id);
+    const idx = _.findIndex(sub.stations, st => mainStations.indexOf(st.id) != -1);
+    sub.stations.slice(0, idx).forEach(st => this.forwardTransfers.add(st.id));
   }
 
   parseStations() {
@@ -53,18 +64,34 @@ export class FirstParser {
     });
     return train_stops.map((stops, idx) => {
       return {
-        'stations': this.removeDuplicateStop(stops),
+        'stations': this.sortStop(stops),
         'speed': parseInt(speeds[idx]),
         'count': parseInt(counts[idx])
       };
     });
   }
 
-  private removeDuplicateStop(stops) {
-    const result = [];
+  private sortStop(stops: number[]) {
+    const forward: number[] = [];
+    const normal: number[] = [];
     stops.forEach(stop => {
-      if(result.length == 0 || stop != result[result.length - 1]) result.push(stop);
+      if(normal.length == 0 || normal.indexOf(stop) == -1) {
+        console.log(this.forwardTransfers, stop);
+        if(this.forwardTransfers.has(stop)) forward.push(stop);
+        else normal.push(stop);
+      }
     });
-    return result;
+    return forward.concat(normal);
   }
+}
+
+type Line = {
+  id: number
+  stations: Station[]
+}
+
+type Station = {
+  id: number
+  name: string
+  xPos: number | null
 }
