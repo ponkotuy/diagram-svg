@@ -1,3 +1,5 @@
+import _ = require('lodash');
+
 export class Line {
   readonly id: number;
   readonly stations: Station[];
@@ -5,8 +7,24 @@ export class Line {
 
   constructor(line: LineObj) {
     this.id = line.id;
-    this.stations = line.stations.map(st => new Station(st))
+    this.stations = line.stations.map(st => new Station(st));
     this.xPos = line.xPos || 0;
+  }
+}
+
+export class SubLine extends Line {
+  readonly transfer: Station;
+
+  constructor(line: LineObj, main: Line) {
+    super(line);
+    const mainStations = main.stations.map(st => st.id);
+    const tranfer: Station | undefined = _.find(this.stations, st => _.includes(mainStations, st.id));
+    if(tranfer == undefined) throw new Error(`Line id=${this.id} does not exists transfer station.`);
+    this.transfer = tranfer;
+  }
+
+  singleLineStations() {
+    return this.stations.filter(st => st.id != this.transfer.id);
   }
 }
 
