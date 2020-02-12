@@ -32,7 +32,7 @@ export class SubLine extends Line {
   }
 }
 
-type LineObj = {
+export type LineObj = {
   id: number,
   stations: StationObj[]
   xPos: number | null;
@@ -48,7 +48,7 @@ export class Station {
   }
 }
 
-type StationObj = {
+export type StationObj = {
   id: number,
   name: string
 }

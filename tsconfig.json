@@ -3,6 +3,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "allowJs": true,
+    "strict": true,
     "lib": [
       "dom",
       "es5",

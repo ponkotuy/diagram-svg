@@ -34,7 +34,7 @@ export class Drawer {
     subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
   }
 
-  searchSubline(stationId) {
+  searchSubline(stationId: number) {
     return _.find(this.subLines, line => 0 <= line.stations.map(st => st.id).indexOf(stationId));
   }
 
@@ -82,7 +82,7 @@ export class Drawer {
   }
 
   nextStation(target: number, next: number): number {
-    const f = station => {
+    const f = (station: number) => {
       const nextIdx = this.stations.indexOf(station) + 1;
       return this.stations[nextIdx] || next;
     };
@@ -114,7 +114,7 @@ export class Drawer {
     this.trains.map(train => {
       const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
-        let beforeStation = null;
+        let beforeStation: number | null = null;
         const allStations: Set<number> = new Set();
         train.stations.forEach(station => {
           const stPos = this.stationState[station].pos;
@@ -138,8 +138,8 @@ export class Drawer {
       const y = Math.ceil(Math.max(this.snapHeight, requiredY));
       this.snap.setSize(x, y);
       const svg = document.getElementById(this.snapId);
-      svg.setAttribute('width', `${x}`);
-      svg.setAttribute('height', `${y}`);
+      svg?.setAttribute('width', `${x}`);
+      svg?.setAttribute('height', `${y}`);
       this.snapWidth = x;
       this.snapHeight = y;
     }
@@ -168,7 +168,7 @@ class StationState {
   readonly pos: Position;
   readonly count: number;
 
-  constructor(pos, count = 0) {
+  constructor(pos: Position, count = 0) {
     this.original = pos;
     this.count = count;
     this.pos = new Position(pos.x + count * TRAIN_WIDTH, pos.y);
