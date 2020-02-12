@@ -1,19 +1,18 @@
-//import * as csvParse from 'csv-parse/lib/sync';
-//import * as Papa from 'papaparse'
 import papa = require('papaparse');
 import {FirstParser} from "./firstParser";
 
 const OPTIONS = {headers: {"Content-Type": "text/csv"}};
 
-document.getElementById('url_form').addEventListener('submit', saveJsonEvent);
+const urlForm = document.getElementById('url_form');
+urlForm && urlForm.addEventListener('submit', saveJsonEvent);
 
-function saveJsonEvent(event) {
+function saveJsonEvent(event: Event) {
   event.stopPropagation();
   event.preventDefault();
   saveJSON();
 }
 
-function getValueFromElementId(id) {
+function getValueFromElementId(id: string) {
   const input = <HTMLInputElement> document.getElementById(id);
   return input.value;
 }

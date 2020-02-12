@@ -8,7 +8,8 @@ export class FirstParser {
 
   constructor(rows: string[][], title: string, author: string) {
     this.rows = rows;
-    this.title = title;    this.author = author;
+    this.title = title;
+    this.author = author;
   }
 
   parse() {
@@ -36,10 +37,10 @@ export class FirstParser {
 
   parseStations() {
     const stationRows = this.rows.slice(2);
-    const lines = [{xPos: 0, stations: []}];
+    const lines: RawLine[] = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
       const [idRow, name] = row;
-      if(name) lines[lines.length - 1].stations.push({id: parseInt(idRow), name: name});
+      if(name) lines[lines.length - 1].stations.push({id: parseInt(idRow), name: name, xPos: null});
       else lines.push({xPos: parseInt(idRow) || 0, stations: []})
     });
     return lines;
@@ -48,7 +49,7 @@ export class FirstParser {
   parseTrains() {
     const speeds = this.rows[0].slice(2);
     const counts = this.rows[1].slice(2);
-    const train_stops = [];
+    const train_stops: number[][] = [];
     speeds.forEach(_ => train_stops.push([]));
     this.rows.slice(2).forEach(row => {
       if(row[0]) {
@@ -92,4 +93,9 @@ type Station = {
   id: number
   name: string
   xPos: number | null
+}
+
+type RawLine = {
+  xPos: number,
+  stations: Station[]
 }

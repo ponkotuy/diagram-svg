@@ -1,9 +1,9 @@
 import {Drawer} from "./drawer";
-import {Line, SubLine} from "./line";
-import {Train} from "./train";
+import {Line, LineObj, SubLine} from "./line";
+import {Train, TrainObj} from "./train";
 
-document.getElementById('url_form').addEventListener('submit', setUrlEvent);
-document.getElementById('save_svg').addEventListener('click', saveSvg);
+document.getElementById('url_form')?.addEventListener('submit', setUrlEvent);
+document.getElementById('save_svg')?.addEventListener('click', saveSvg);
 
 const params = new URLSearchParams(location.search);
 
@@ -20,7 +20,7 @@ if(!input.value) {
 
 setUrl();
 
-function setUrlEvent(event) {
+function setUrlEvent(event: Event) {
   event.stopPropagation();
   event.preventDefault();
   setUrl();
@@ -35,13 +35,13 @@ function setUrl() {
 
 let drawer: Drawer | null = null;
 
-function draw(url) {
+function draw(url: string) {
   if(drawer) drawer.clear();
   fetch(url).then(res => {
     res.json().then(json => {
       const main = new Line(json.mainLine);
-      const sub = json.subLines.map(line => new SubLine(line, main));
-      const ts = json.trains.map(train => new Train(train));
+      const sub = json.subLines.map((line: LineObj) => new SubLine(line, main));
+      const ts = json.trains.map((train: TrainObj) => new Train(train));
       drawer = new Drawer(main, sub, ts);
       drawer.draw();
     });
@@ -49,10 +49,16 @@ function draw(url) {
 }
 
 function saveSvg() {
-  const svg = document.getElementById('svg').innerHTML;
+  const svg = document.getElementById('svg')!.innerHTML;
   const a = document.createElement('a');
   const file = new Blob([svg], {type: 'image/svg+xml'});
   a.href = URL.createObjectURL(file);
   a.download = 'file.svg';
   a.click();
+}
+
+type JsonObj = {
+  mainLine: LineObj
+  subLines: LineObj[]
+  trains: Train[]
 }

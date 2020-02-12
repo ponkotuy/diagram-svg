@@ -2,7 +2,7 @@ export class Position {
   readonly x: number;
   readonly y: number;
 
-  constructor(x, y) {
+  constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
   }
