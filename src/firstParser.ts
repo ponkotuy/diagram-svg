@@ -8,8 +8,7 @@ export class FirstParser {
 
   constructor(rows: string[][], title: string, author: string) {
     this.rows = rows;
-    this.title = title;
-    this.author = author;
+    this.title = title;    this.author = author;
   }
 
   parse() {
@@ -76,7 +75,6 @@ export class FirstParser {
     const normal: number[] = [];
     stops.forEach(stop => {
       if(normal.length == 0 || normal.indexOf(stop) == -1) {
-        console.log(this.forwardTransfers, stop);
         if(this.forwardTransfers.has(stop)) forward.push(stop);
         else normal.push(stop);
       }

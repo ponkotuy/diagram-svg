@@ -69,8 +69,9 @@ export class Drawer {
     const trainWidth = this.trains.map(train => train.count).reduce((x, y) => x + y) * TRAIN_WIDTH;
     const width = this.mainLineTextMaxSize + trainWidth;
     this.subLines.forEach(line => {
-      const startIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.stations[0].id));
-      const height = (startIdx + 2.5) * STATION_HEIGHT;
+      const transferMainIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.transfer.id));
+      const transferSubIdx = line.transferIdx();
+      const height = (transferMainIdx - transferSubIdx + (transferSubIdx == 0 ? 2.5 : -1.5)) * STATION_HEIGHT
       this.drawStations(line.singleLineStations(), width + (line.xPos || 0) * TRAIN_WIDTH, height);
     });
   }
