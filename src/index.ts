@@ -39,9 +39,10 @@ function draw(url: string) {
   if(drawer) drawer.clear();
   fetch(url).then(res => {
     res.json().then(json => {
+      if(!isJsonObj(json)) return;
       const main = new Line(json.mainLine);
-      const sub = json.subLines.map((line: LineObj) => new SubLine(line, main));
-      const ts = json.trains.map((train: TrainObj) => new Train(train));
+      const sub = json.subLines.map(line => new SubLine(line, main));
+      const ts = json.trains.map(train => new Train(train));
       drawer = new Drawer(main, sub, ts);
       drawer.draw();
     });
@@ -61,4 +62,8 @@ type JsonObj = {
   mainLine: LineObj
   subLines: LineObj[]
   trains: Train[]
+}
+
+function isJsonObj(arg: any): arg is JsonObj {
+  return arg;
 }
