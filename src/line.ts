@@ -26,6 +26,10 @@ export class SubLine extends Line {
   singleLineStations() {
     return this.stations.filter(st => st.id != this.transfer.id);
   }
+
+  transferIdx() {
+    return _.findIndex(this.stations, st => st.id == this.transfer.id)
+  }
 }
 
 type LineObj = {
