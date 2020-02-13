@@ -40,7 +40,7 @@ export class FirstParser {
     const lines: RawLine[] = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
       const [idRow, name] = row;
-      if(name) lines[lines.length - 1].stations.push({id: parseInt(idRow), name: name, xPos: null});
+      if(name) lines[lines.length - 1].stations.push({id: parseInt(idRow), name: name});
       else lines.push({xPos: parseInt(idRow) || 0, stations: []})
     });
     return lines;
@@ -92,7 +92,6 @@ type Line = {
 type Station = {
   id: number
   name: string
-  xPos: number | null
 }
 
 type RawLine = {

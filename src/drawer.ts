@@ -30,7 +30,7 @@ export class Drawer {
     this.subLines = subs;
     this.stations = _(main.stations.map(st => st.id))
       .concat(_.flatMap(subs, sub => sub.stations.map(st => st.id)))
-      .sort((a, b) => a - b).sortedUniq().value();
+      .sortedUniq().value();
     subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
   }
 
@@ -71,7 +71,7 @@ export class Drawer {
     this.subLines.forEach(line => {
       const transferMainIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.transfer.id));
       const transferSubIdx = line.transferIdx();
-      const height = (transferMainIdx - transferSubIdx + (transferSubIdx == 0 ? 2.5 : -1.5)) * STATION_HEIGHT
+      const height = (transferMainIdx - transferSubIdx + (transferSubIdx == 0 ? 2.5 : -1.5)) * STATION_HEIGHT;
       this.drawStations(line.singleLineStations(), width + (line.xPos || 0) * TRAIN_WIDTH, height);
     });
   }
