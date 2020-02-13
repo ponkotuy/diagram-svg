@@ -11,6 +11,7 @@
 ,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
 ,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy"}
 ,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy"}
+,{"file":"data2/soutetsu.json", "name":"相鉄線", "author":"ponkotuy"}
 ,{"file":"data2/tobu_isesaki.json", "name":"東武伊勢崎線", "author":"ponkotuy"}
 ,{"file":"data2/tobu_tojo.json", "name":"東武東上線", "author":"ponkotuy"}
 ,{"file":"data2/tokyu_denentoshi.json", "name":"東急田園都市線", "author":"ponkotuy"}
