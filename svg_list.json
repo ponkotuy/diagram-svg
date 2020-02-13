@@ -9,6 +9,7 @@
 ,{"file":"data2/meitetsu_inuyama.json", "name":"名鉄犬山線", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_toyohashi.json", "name":"名鉄豊橋方面", "author":"ponkotuy"}
 ,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
+,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy"}
 ,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy"}
 ,{"file":"data2/tobu_isesaki.json", "name":"東武伊勢崎線", "author":"ponkotuy"}
 ,{"file":"data2/tobu_tojo.json", "name":"東武東上線", "author":"ponkotuy"}
