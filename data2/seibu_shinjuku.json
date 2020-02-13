@@ -1,0 +1,342 @@
+{
+  "mainLine": {
+    "id": 1,
+    "stations": [
+      {
+        "id": 1,
+        "name": "西武新宿",
+        "xPos": null
+      },
+      {
+        "id": 2,
+        "name": "高田馬場",
+        "xPos": null
+      },
+      {
+        "id": 3,
+        "name": "下落合",
+        "xPos": null
+      },
+      {
+        "id": 4,
+        "name": "中井",
+        "xPos": null
+      },
+      {
+        "id": 5,
+        "name": "新井薬師前",
+        "xPos": null
+      },
+      {
+        "id": 6,
+        "name": "沼袋",
+        "xPos": null
+      },
+      {
+        "id": 7,
+        "name": "野方",
+        "xPos": null
+      },
+      {
+        "id": 8,
+        "name": "都立家政",
+        "xPos": null
+      },
+      {
+        "id": 9,
+        "name": "鷺ノ宮",
+        "xPos": null
+      },
+      {
+        "id": 10,
+        "name": "下井草",
+        "xPos": null
+      },
+      {
+        "id": 11,
+        "name": "井荻",
+        "xPos": null
+      },
+      {
+        "id": 12,
+        "name": "上井草",
+        "xPos": null
+      },
+      {
+        "id": 13,
+        "name": "上石神井",
+        "xPos": null
+      },
+      {
+        "id": 14,
+        "name": "武蔵関",
+        "xPos": null
+      },
+      {
+        "id": 15,
+        "name": "東伏見",
+        "xPos": null
+      },
+      {
+        "id": 16,
+        "name": "西武柳沢",
+        "xPos": null
+      },
+      {
+        "id": 17,
+        "name": "田無",
+        "xPos": null
+      },
+      {
+        "id": 18,
+        "name": "花小金井",
+        "xPos": null
+      },
+      {
+        "id": 19,
+        "name": "小平",
+        "xPos": null
+      },
+      {
+        "id": 20,
+        "name": "久米川",
+        "xPos": null
+      },
+      {
+        "id": 21,
+        "name": "東村山",
+        "xPos": null
+      },
+      {
+        "id": 22,
+        "name": "所沢",
+        "xPos": null
+      },
+      {
+        "id": 23,
+        "name": "航空公園",
+        "xPos": null
+      },
+      {
+        "id": 24,
+        "name": "新所沢",
+        "xPos": null
+      },
+      {
+        "id": 25,
+        "name": "入曽",
+        "xPos": null
+      },
+      {
+        "id": 26,
+        "name": "狭山市",
+        "xPos": null
+      },
+      {
+        "id": 27,
+        "name": "新狭山",
+        "xPos": null
+      },
+      {
+        "id": 28,
+        "name": "南大塚",
+        "xPos": null
+      },
+      {
+        "id": 29,
+        "name": "本川越",
+        "xPos": null
+      }
+    ]
+  },
+  "subLines": [
+    {
+      "id": 2,
+      "stations": [
+        {
+          "id": 19,
+          "name": "小平",
+          "xPos": null
+        },
+        {
+          "id": 101,
+          "name": "萩山",
+          "xPos": null
+        },
+        {
+          "id": 102,
+          "name": "小川",
+          "xPos": null
+        },
+        {
+          "id": 103,
+          "name": "東大和市",
+          "xPos": null
+        },
+        {
+          "id": 104,
+          "name": "玉川上水",
+          "xPos": null
+        },
+        {
+          "id": 105,
+          "name": "武蔵砂川",
+          "xPos": null
+        },
+        {
+          "id": 106,
+          "name": "西武立川",
+          "xPos": null
+        },
+        {
+          "id": 107,
+          "name": "拝島",
+          "xPos": null
+        }
+      ],
+      "xPos": -6
+    }
+  ],
+  "trains": [
+    {
+      "stations": [
+        1,
+        2,
+        21,
+        22,
+        26,
+        29
+      ],
+      "speed": 7,
+      "count": 1
+    },
+    {
+      "stations": [
+        1,
+        2,
+        9,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "speed": 4,
+      "count": 3
+    },
+    {
+      "stations": [
+        1,
+        2,
+        9,
+        13,
+        17,
+        18,
+        19,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "speed": 4,
+      "count": 3
+    },
+    {
+      "stations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "speed": 1,
+      "count": 3
+    },
+    {
+      "stations": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "speed": 1,
+      "count": 3
+    },
+    {
+      "stations": [
+        19,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "speed": 1,
+      "count": 1
+    },
+    {
+      "stations": [
+        19,
+        101,
+        102,
+        103,
+        104
+      ],
+      "speed": 1,
+      "count": 2
+    }
+  ],
+  "title": "西武新宿線",
+  "author": "ponkotuy"
+}
