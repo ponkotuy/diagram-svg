@@ -4,6 +4,7 @@
 ,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy"}
 ,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy"}
 ,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
+,{"file":"data2/keisei.json", "name":"京成(40分間隔)", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_chita.json", "name":"名鉄知多半島方面", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_gifu.json", "name":"名鉄岐阜方面", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_inuyama.json", "name":"名鉄犬山線", "author":"ponkotuy"}
