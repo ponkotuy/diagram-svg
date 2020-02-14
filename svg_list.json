@@ -1,5 +1,6 @@
 [
 {"file":"data2/jr_higashi_chuo.json", "name":"JR東日本中央線", "author":"ponkotuy"}
+,{"file":"data2/jr_higashi_keiyo.json", "name":"JR東日本京葉線", "author":"ponkotuy"}
 ,{"file":"data2/jr_higashi_sobu.json", "name":"JR東日本総武線", "author":"ponkotuy"}
 ,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy"}
