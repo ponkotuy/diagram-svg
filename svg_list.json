@@ -19,4 +19,5 @@
 ,{"file":"data2/tobu_tojo.json", "name":"東武東上線", "author":"ponkotuy"}
 ,{"file":"data2/tokyu_denentoshi.json", "name":"東急田園都市線", "author":"ponkotuy"}
 ,{"file":"data2/tokyu_toyoko.json", "name":"東急東横線", "author":"ponkotuy"}
+,{"file":"data2/tsukuba_express.json", "name":"つくばエクスプレス", "author":"ponkotuy"}
 ]
