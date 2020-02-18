@@ -8,6 +8,7 @@
 ,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy"}
 ,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
 ,{"file":"data2/keisei.json", "name":"京成(40分間隔)", "author":"ponkotuy"}
+,{"file":"data2/kintetsu_kyoto.json", "name":"近鉄京都線", "author":"ponkotuy"}
 ,{"file":"data2/kintetsu_nagoya.json", "name":"近鉄名古屋線", "author":"ponkotuy"}
 ,{"file":"data2/kintetsu_nara.json", "name":"近鉄奈良線", "author":"ponkotuy"}
 ,{"file":"data2/kintetsu_osaka.json", "name":"近鉄大阪線", "author":"ponkotuy"}
