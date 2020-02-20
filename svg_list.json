@@ -17,6 +17,8 @@
 ,{"file":"data2/meitetsu_gifu.json", "name":"名鉄岐阜方面", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_inuyama.json", "name":"名鉄犬山線", "author":"ponkotuy"}
 ,{"file":"data2/meitetsu_toyohashi.json", "name":"名鉄豊橋方面", "author":"ponkotuy"}
+,{"file":"data2/nankai_honsen.json", "name":"南海本線", "author":"ponkotuy"}
+,{"file":"data2/nankai_koya.json", "name":"南海高野線", "author":"ponkotuy"}
 ,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
 ,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy"}
 ,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy"}
