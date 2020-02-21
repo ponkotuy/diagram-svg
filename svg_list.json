@@ -1,5 +1,8 @@
 [
-{"file":"data2/jr_higashi_chuo.json", "name":"JR東日本中央線", "author":"ponkotuy"}
+{"file":"data2/hankyu_kobe.json", "name":"阪急神戸線", "author":"ponkotuy"}
+,{"file":"data2/hankyu_kyoto.json", "name":"阪急京都線", "author":"ponkotuy"}
+,{"file":"data2/hankyu_takarazuka.json", "name":"阪急宝塚線", "author":"ponkotuy"}
+,{"file":"data2/jr_higashi_chuo.json", "name":"JR東日本中央線", "author":"ponkotuy"}
 ,{"file":"data2/jr_higashi_joban.json", "name":"JR東日本常磐線", "author":"ponkotuy"}
 ,{"file":"data2/jr_higashi_keiyo.json", "name":"JR東日本京葉線", "author":"ponkotuy"}
 ,{"file":"data2/jr_higashi_sobu.json", "name":"JR東日本総武線", "author":"ponkotuy"}
