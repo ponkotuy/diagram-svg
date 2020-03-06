@@ -115,19 +115,40 @@ export class Drawer {
       const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
         let beforeStation: number | null = null;
+        const beforeStations = new Map<number, Position>();
         const allStations: Set<number> = new Set();
         train.stations.forEach(station => {
-          const stPos = this.stationState[station].pos;
-          const pos = {x: stPos.x + STATION_TRAIN, y: stPos.y + STATION_TRAIN};
-          const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
-            .attr({stroke: font.color, fill: font.color});
-          this.expandSnap(circle);
-          this.drawLine(font, beforeStation, station).forEach(st => allStations.add(st));
+          const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+          stations.forEach(st => allStations.add(st));
           beforeStation = station;
+          beforeStations.set(station, pos);
+        });
+        train.branches.forEach(branch => {
+          beforeStation = null;
+          branch.forEach(station => {
+            if(beforeStations.has(station)) {
+              this.drawLine(font, beforeStation, station);
+              beforeStation = station
+            } else {
+              const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+              stations.forEach(st => allStations.add(st));
+              beforeStation = station;
+              beforeStations.set(station, pos);
+            }
+          })
         });
         allStations.forEach(st => this.stationState[st] = this.stationState[st].incr());
       }
     })
+  }
+
+  private drawTrainStation(font: Font, station: number, beforeStation: number | null): [number[], Position] {
+    const stPos = this.stationState[station].pos;
+    const pos = new Position(stPos.x + STATION_TRAIN, stPos.y + STATION_TRAIN);
+    const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
+      .attr({stroke: font.color, fill: font.color});
+    this.expandSnap(circle);
+    return [this.drawLine(font, beforeStation, station), pos];
   }
 
   expandSnap(elem: RaphaelElement) {

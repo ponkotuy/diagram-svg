@@ -55,11 +55,11 @@ export class Lines {
     } else {
       const [subLine, mainStation] = xLine.id == this.main.id ? [yLine, x] : [xLine, y];
       const branch = this.branchStation(subLine.id)!;
-      const subOrder = branch == subLine.stations[0].id ? Order.Asc : Order.Desc;
+      const subOrder = branch == subLine.stations[0].id ? Order.Desc : Order.Asc;
       const mainOrder = Order.number(mainStation, branch);
       if(subOrder == mainOrder) return null;
-      if(mainStation == x) return subOrder;
-      return Order.reverse(subOrder);
+      if(mainStation == x) return Order.reverse(subOrder);
+      return subOrder;
     }
   }
 

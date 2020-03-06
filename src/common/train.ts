@@ -8,7 +8,7 @@ export class Train {
 
   constructor(obj: TrainObj) {
     this.stations = obj.stations;
-    this.branches = obj.branches;
+    this.branches = obj.branches || [];
     this.count = obj.count;
     this.speed = obj.speed
   }
@@ -16,7 +16,7 @@ export class Train {
 
 export type TrainObj = {
   stations: number[]
-  branches: number[][]
+  branches: number[][] | null;
   count: number
   speed: Speed
 }
