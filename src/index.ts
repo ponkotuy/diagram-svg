@@ -1,6 +1,6 @@
-import {Drawer} from "./drawer";
-import {Line, LineObj, SubLine} from "./line";
-import {Train, TrainObj} from "./train";
+import {Drawer} from "./index/drawer";
+import {Line, LineObj, SubLine} from "./common/line";
+import {Train} from "./common/train";
 
 document.getElementById('url_form')?.addEventListener('submit', setUrlEvent);
 document.getElementById('save_svg')?.addEventListener('click', saveSvg);
@@ -40,8 +40,8 @@ function draw(url: string) {
   fetch(url).then(res => {
     res.json().then(json => {
       if(!isJsonObj(json)) return;
-      const main = new Line(json.mainLine);
-      const sub = json.subLines.map(line => new SubLine(line, main));
+      const main = Line.fromObj(json.mainLine);
+      const sub = json.subLines.map(line => new SubLine(Line.fromObj(line), main));
       const ts = json.trains.map(train => new Train(train));
       drawer = new Drawer(main, sub, ts);
       drawer.draw();
