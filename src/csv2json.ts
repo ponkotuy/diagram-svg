@@ -1,5 +1,5 @@
 import papa = require('papaparse');
-import {FirstParser} from "./firstParser";
+import {FirstParser} from "./csv2json/firstParser";
 
 const OPTIONS = {headers: {"Content-Type": "text/csv"}};
 
