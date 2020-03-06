@@ -1,5 +1,5 @@
-import {Line, Station, SubLine} from "./line";
-import {Speed, Train} from "./train";
+import {Line, Station, SubLine} from "../common/line";
+import {Speed, Train} from "../common/train";
 import {Position} from "./position";
 import _ = require('lodash');
 import Raphael = require('raphael');
@@ -29,13 +29,13 @@ export class Drawer {
     this.trains = trains;
     this.subLines = subs;
     this.stations = _(main.stations.map(st => st.id))
-      .concat(_.flatMap(subs, sub => sub.stations.map(st => st.id)))
+      .concat(_.flatMap(subs, sub => sub.stations().map(st => st.id)))
       .sortedUniq().value();
-    subs.forEach(line => this.branchStations[line.id] = line.stations[0].id);
+    subs.forEach(line => this.branchStations[line.id()] = line.stations()[0].id);
   }
 
   searchSubline(stationId: number) {
-    return _.find(this.subLines, line => 0 <= line.stations.map(st => st.id).indexOf(stationId));
+    return _.find(this.subLines, line => 0 <= line.stations().map(st => st.id).indexOf(stationId));
   }
 
   draw() {
@@ -72,7 +72,7 @@ export class Drawer {
       const transferMainIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.transfer.id));
       const transferSubIdx = line.transferIdx();
       const height = (transferMainIdx - transferSubIdx + (transferSubIdx == 0 ? 2.5 : -1.5)) * STATION_HEIGHT;
-      this.drawStations(line.singleLineStations(), width + (line.xPos || 0) * TRAIN_WIDTH, height);
+      this.drawStations(line.singleLineStations(), width + (line.xPos() || 0) * TRAIN_WIDTH, height);
     });
   }
 
@@ -90,7 +90,7 @@ export class Drawer {
     if(lineId == -1) return f(target);
     else {
       const line = this.searchSubline(next);
-      if(line && line.stations.slice(1).some(st => st.id == next)) return line.stations[1].id;
+      if(line && line.stations().slice(1).some(st => st.id == next)) return line.stations()[1].id;
       else return f(target);
     }
   }
@@ -115,19 +115,40 @@ export class Drawer {
       const font = fontFromSpeed(train.speed);
       for (let i = 0; i < train.count; i++) {
         let beforeStation: number | null = null;
+        const beforeStations = new Map<number, Position>();
         const allStations: Set<number> = new Set();
         train.stations.forEach(station => {
-          const stPos = this.stationState[station].pos;
-          const pos = {x: stPos.x + STATION_TRAIN, y: stPos.y + STATION_TRAIN};
-          const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
-            .attr({stroke: font.color, fill: font.color});
-          this.expandSnap(circle);
-          this.drawLine(font, beforeStation, station).forEach(st => allStations.add(st));
+          const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+          stations.forEach(st => allStations.add(st));
           beforeStation = station;
+          beforeStations.set(station, pos);
+        });
+        train.branches.forEach(branch => {
+          beforeStation = null;
+          branch.forEach(station => {
+            if(beforeStations.has(station)) {
+              this.drawLine(font, beforeStation, station);
+              beforeStation = station
+            } else {
+              const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+              stations.forEach(st => allStations.add(st));
+              beforeStation = station;
+              beforeStations.set(station, pos);
+            }
+          })
         });
         allStations.forEach(st => this.stationState[st] = this.stationState[st].incr());
       }
     })
+  }
+
+  private drawTrainStation(font: Font, station: number, beforeStation: number | null): [number[], Position] {
+    const stPos = this.stationState[station].pos;
+    const pos = new Position(stPos.x + STATION_TRAIN, stPos.y + STATION_TRAIN);
+    const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
+      .attr({stroke: font.color, fill: font.color});
+    this.expandSnap(circle);
+    return [this.drawLine(font, beforeStation, station), pos];
   }
 
   expandSnap(elem: RaphaelElement) {
