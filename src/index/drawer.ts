@@ -97,7 +97,6 @@ export class Drawer {
 
   // 通過・停車駅リストを返す
   drawLine(font: Font, before: number | null, after: number): number[] {
-    console.log(before, after);
     if(before === null) return [];
     const result = [before];
     for(let i = before; i != after; ) {
