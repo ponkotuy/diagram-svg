@@ -10,6 +10,7 @@
 ,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_hanwa.json", "name":"JR西日本阪和線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_kansai.json", "name":"JR西日本関西本線", "author":"ponkotuy"}
+,{"file":"data2/jr_nishi_katamachi.json", "name":"JR西日本片町線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy"}
 ,{"file":"data2/keihan.json", "name":"京阪本線", "author":"ponkotuy"}
 ,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy"}
