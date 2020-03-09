@@ -15,6 +15,8 @@
 ,{"file":"data2/jr_nishi_nara.json", "name":"JR西日本奈良線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_sagano.json", "name":"JR西日本嵯峨野線", "author":"ponkotuy"}
 ,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy"}
+,{"file":"data2/jr_tokai_chuo.json", "name":"JR東海中央線", "author":"ponkotuy"}
+,{"file":"data2/jr_tokai_tokaido.json", "name":"JR東海東海道本線", "author":"ponkotuy"}
 ,{"file":"data2/keihan.json", "name":"京阪本線", "author":"ponkotuy"}
 ,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy"}
 ,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
