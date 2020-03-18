@@ -8,11 +8,13 @@ export class FirstParser {
   readonly title: string;
   readonly author: string;
   readonly forwardTransfers: Set<number> = new Set();
+  readonly hasName: boolean;
 
   constructor(rows: string[][], title: string, author: string) {
     this.rows = rows;
     this.title = title;
     this.author = author;
+    this.hasName = rows[2][0] == 'name';
   }
 
   parse() {
@@ -29,7 +31,7 @@ export class FirstParser {
   }
 
   parseStations() {
-    const stationRows = this.rows.slice(2);
+    const stationRows = this.rows.slice(this.headerCount());
     const rawLines: RawLine[] = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
       const [idRow, name] = row;
@@ -43,9 +45,10 @@ export class FirstParser {
   parseTrains(lines: Lines) {
     const speeds = this.rows[0].slice(2);
     const counts = this.rows[1].slice(2);
+    const names = this.hasName ? this.rows[2].slice(2) : null;
     const train_stops: TrainStops[] = [];
     speeds.forEach(_ => train_stops.push(new TrainStops(lines, [])));
-    this.rows.slice(2).forEach(row => {
+    this.rows.slice(this.headerCount()).forEach(row => {
       if(row[0]) {
         const stationId = parseInt(row[0]);
         const stops = row.slice(2);
@@ -57,8 +60,12 @@ export class FirstParser {
       }
     });
     return train_stops.map((stops, idx) => {
-      return new Train(stops, parseInt(speeds[idx]), parseInt(counts[idx]));
+      return new Train(stops, parseInt(speeds[idx]), parseInt(counts[idx]), names?.[idx]);
     });
+  }
+
+  private headerCount() {
+    return this.hasName ? 3 : 2;
   }
 }
 

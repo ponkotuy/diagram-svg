@@ -1,14 +1,16 @@
 import {Line, Station, SubLine} from "../common/line";
-import {Speed, Train} from "../common/train";
+import {Train} from "../common/train";
 import {Position} from "./position";
+import {StationState, TRAIN_WIDTH} from "./stationState"
 import _ = require('lodash');
 import Raphael = require('raphael');
+import {SpeedStyle} from "./speedStyle";
 
 const STATION_HEIGHT = 28;
-const TRAIN_WIDTH = 20;
 const STATION_TRAIN = 8;
 const STOP_SIZE = 5;
-const STATION_FONT = {'font-size': 20, 'text-anchor': 'start'};
+const DEFAULT_FONT = {'font-size': 20, 'text-anchor': 'start'};
+const TRAIN_NAME_LINE_LENGTH = STATION_HEIGHT * 2;
 
 export class Drawer {
   readonly snap: RaphaelPaper;
@@ -18,7 +20,6 @@ export class Drawer {
   readonly branchStations: number[] = [];
   readonly stations: number[] = [];
   stationState: { [k: number]: StationState } = {};
-  mainLineTextMaxSize = 0;
   snapWidth = 640;
   snapHeight = 480;
   snapId = 'svg';
@@ -39,35 +40,37 @@ export class Drawer {
   }
 
   draw() {
-    this.drawMain();
-    this.drawSub();
+    const mainPos = this.drawMain();
+    this.drawTrainName(mainPos.y + STATION_HEIGHT * 1.5);
+    this.drawSub(mainPos.x);
     this.drawTrain();
   }
 
-  drawStations(stations: Station[], x: number, baseY: number): number {
+  drawStations(stations: Station[], x: number, baseY: number): Position {
     const texts = stations.map((st, idx) => {
       const posY = baseY + STATION_HEIGHT * (idx + 0.5);
       this.stationState[st.id] = new StationState(new Position(x, posY));
       const text = this.snap.text(x, posY + STATION_TRAIN, st.name);
-      text.attr(STATION_FONT);
+      text.attr(DEFAULT_FONT);
       return text;
     });
     const maxWidth = Math.max(...texts.map(text => text.getBBox().width));
+    let maxHeight = 0;
     stations.forEach(station => {
       const state = this.stationState[station.id];
       this.stationState[station.id] = new StationState(state.pos.addX(maxWidth));
+      maxHeight = Math.max(maxHeight, state.pos.y)
     });
-    return maxWidth
+    return new Position(maxWidth, maxHeight);
   }
 
   drawMain() {
-    const maxWidth = this.drawStations(this.mainLine.stations, 0, 0);
-    this.mainLineTextMaxSize = Math.max(this.mainLineTextMaxSize, maxWidth);
+    return this.drawStations(this.mainLine.stations, 0, 0);
   }
 
-  drawSub() {
+  drawSub(xPos: number) {
     const trainWidth = this.trains.map(train => train.count).reduce((x, y) => x + y) * TRAIN_WIDTH;
-    const width = this.mainLineTextMaxSize + trainWidth;
+    const width = xPos + trainWidth;
     this.subLines.forEach(line => {
       const transferMainIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.transfer.id));
       const transferSubIdx = line.transferIdx();
@@ -76,9 +79,10 @@ export class Drawer {
     });
   }
 
-  drawLineElement(font: Font, beforePos: Position, afterPos: Position) {
-    const line = this.snap.path(`M${beforePos.x + STATION_TRAIN},${beforePos.y + STATION_TRAIN} L${afterPos.x + STATION_TRAIN},${afterPos.y + STATION_TRAIN}`);
-    line.attr({"stroke-width": font.width, stroke: font.color});
+  drawLineElement(style: SpeedStyle, beforePos: Position, afterPos: Position) {
+    const pos1 = beforePos.addXY(STATION_TRAIN, STATION_TRAIN);
+    const pos2 = afterPos.addXY(STATION_TRAIN, STATION_TRAIN);
+    this.drawPath(pos1, pos2, style.line());
   }
 
   nextStation(target: number, next: number): number {
@@ -96,7 +100,7 @@ export class Drawer {
   }
 
   // 通過・停車駅リストを返す
-  drawLine(font: Font, before: number | null, after: number): number[] {
+  drawLine(style: SpeedStyle, before: number | null, after: number): number[] {
     if(before === null) return [];
     const result = [before];
     for(let i = before; i != after; ) {
@@ -104,7 +108,7 @@ export class Drawer {
       result.push(next);
       const origPos = this.stationState[i].pos;
       const nextPos = this.stationState[next].pos;
-      this.drawLineElement(font, origPos, nextPos);
+      this.drawLineElement(style, origPos, nextPos);
       i = next;
     }
     return result;
@@ -112,13 +116,13 @@ export class Drawer {
 
   drawTrain() {
     this.trains.map(train => {
-      const font = fontFromSpeed(train.speed);
+      const style = train.style();
       for (let i = 0; i < train.count; i++) {
         let beforeStation: number | null = null;
         const beforeStations = new Map<number, Position>();
         const allStations: Set<number> = new Set();
         train.stations.forEach(station => {
-          const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+          const [stations, pos] = this.drawTrainStation(style, station, beforeStation);
           stations.forEach(st => allStations.add(st));
           beforeStation = station;
           beforeStations.set(station, pos);
@@ -127,11 +131,11 @@ export class Drawer {
           beforeStation = null;
           branch.forEach(station => {
             if(beforeStations.has(station)) {
-              const stations = this.drawLine(font, beforeStation, station);
+              const stations = this.drawLine(style, beforeStation, station);
               stations.forEach(st => allStations.add(st));
               beforeStation = station
             } else {
-              const [stations, pos] = this.drawTrainStation(font, station, beforeStation);
+              const [stations, pos] = this.drawTrainStation(style, station, beforeStation);
               stations.forEach(st => allStations.add(st));
               beforeStation = station;
               beforeStations.set(station, pos);
@@ -143,13 +147,35 @@ export class Drawer {
     })
   }
 
-  private drawTrainStation(font: Font, station: number, beforeStation: number | null): [number[], Position] {
+  drawTrainName(yPos: number) {
+    _(this.trains)
+      .filter(train => train.name != null)
+      .uniqBy(train => train.name)
+      .forEach((train, idx) => {
+        const left = new Position(STATION_HEIGHT * 0.5, yPos + STATION_HEIGHT * (idx + 0.5));
+        const right = left.addX(TRAIN_NAME_LINE_LENGTH);
+        console.log(left, right);
+        const circleStyle = train.style().station();
+        this.snap.circle(left.x, left.y, STOP_SIZE).attr(circleStyle);
+        this.snap.circle(right.x, right.y, STOP_SIZE).attr(circleStyle);
+        this.drawPath(left, right, train.style().line());
+        const text = this.snap.text(right.x + STATION_HEIGHT * 2, right.y, train.name!);
+        text.attr(DEFAULT_FONT);
+        this.expandSnap(text);
+      });
+  }
+
+  private drawPath(pos1: Position, pos2: Position, params: Object) {
+    const line = this.snap.path(`M${pos1.x},${pos1.y} L${pos2.x},${pos2.y}`);
+    line.attr(params);
+  }
+
+  private drawTrainStation(style: SpeedStyle, station: number, beforeStation: number | null): [number[], Position] {
     const stPos = this.stationState[station].pos;
     const pos = new Position(stPos.x + STATION_TRAIN, stPos.y + STATION_TRAIN);
-    const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE)
-      .attr({stroke: font.color, fill: font.color});
+    const circle = this.snap.circle(pos.x, pos.y, STOP_SIZE).attr(style.station());
     this.expandSnap(circle);
-    return [this.drawLine(font, beforeStation, station), pos];
+    return [this.drawLine(style, beforeStation, station), pos];
   }
 
   expandSnap(elem: RaphaelElement) {
@@ -169,34 +195,5 @@ export class Drawer {
 
   clear() {
     this.snap.clear();
-  }
-}
-
-type Font = {color: string, width: number}
-
-function fontFromSpeed(speed: Speed) {
-  if(speed == 1) return {color: 'black', width: 1};
-  if(speed == 2) return {color: 'green', width: 1};
-  if(speed <= 4) return {color: '#0066ff', width: 1};
-  if(speed <= 6) return {color: 'orange', width: 2};
-  if(speed == 7) return {color: 'red', width: 2};
-  if(speed == 8) return {color: 'black', width: 2};
-  if(speed == 9) return {color: '#0066ff', width: 2};
-  return {color: '#003399', width: 2};
-}
-
-class StationState {
-  private readonly original: Position;
-  readonly pos: Position;
-  readonly count: number;
-
-  constructor(pos: Position, count = 0) {
-    this.original = pos;
-    this.count = count;
-    this.pos = new Position(pos.x + count * TRAIN_WIDTH, pos.y);
-  }
-
-  incr() {
-    return new StationState(this.original, this.count + 1);
   }
 }

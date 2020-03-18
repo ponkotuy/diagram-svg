@@ -72,11 +72,13 @@ export class Train {
   readonly stops: TrainStops;
   readonly speed: number;
   readonly count: number;
+  readonly name?: string;
 
-  constructor(stops: TrainStops, speed: number, count: number) {
+  constructor(stops: TrainStops, speed: number, count: number, name?: string) {
     this.stops = stops;
     this.speed = speed;
     this.count = count;
+    this.name = name;
   }
 
   toJSON() {
@@ -85,7 +87,8 @@ export class Train {
       'stations': stops.stations,
       'branches': 0 < stops.branches.length ? stops.branches : undefined,
       'speed': this.speed,
-      'count': this.count
+      'count': this.count,
+      'name': this.name
     }
   }
 }
