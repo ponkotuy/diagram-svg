@@ -1,3 +1,5 @@
+import {SpeedStyle} from "../index/speedStyle";
+
 export class Train {
   readonly stations: number[];
   readonly branches: number[][];
@@ -11,6 +13,10 @@ export class Train {
     this.count = obj.count;
     this.speed = obj.speed;
     this.name = obj.name;
+  }
+
+  style() {
+    return SpeedStyle.fromSpeed(this.speed)
   }
 }
 
