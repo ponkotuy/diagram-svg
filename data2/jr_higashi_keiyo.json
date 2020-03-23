@@ -166,7 +166,8 @@
         "id": 41,
         "name": "安房鴨川"
       }
-    ]
+    ],
+    "xPos": 0
   },
   "subLines": [
     {
@@ -344,7 +345,8 @@
         41
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -371,7 +373,8 @@
         27
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -388,7 +391,8 @@
         17
       ],
       "speed": 4,
-      "count": 3
+      "count": 3,
+      "name": "快速"
     },
     {
       "stations": [
@@ -407,7 +411,8 @@
         13
       ],
       "speed": 1,
-      "count": 4
+      "count": 4,
+      "name": "普通"
     },
     {
       "stations": [
@@ -448,7 +453,8 @@
         126
       ],
       "speed": 1,
-      "count": 3
+      "count": 3,
+      "name": "普通"
     },
     {
       "stations": [
@@ -480,12 +486,11 @@
         126
       ],
       "speed": 1,
-      "count": 3
+      "count": 3,
+      "name": "普通"
     },
     {
       "stations": [
-        201,
-        202,
         17,
         18,
         19,
@@ -512,13 +517,19 @@
         40,
         41
       ],
+      "branches": [
+        [
+          201,
+          202,
+          17
+        ]
+      ],
       "speed": 1,
-      "count": 1
+      "count": 1,
+      "name": "普通"
     },
     {
       "stations": [
-        201,
-        202,
         17,
         18,
         19,
@@ -531,32 +542,44 @@
         26,
         27
       ],
+      "branches": [
+        [
+          201,
+          202,
+          17
+        ]
+      ],
       "speed": 1,
-      "count": 1
+      "count": 1,
+      "name": "普通"
     },
     {
       "stations": [
-        201,
-        202,
         17,
         18,
         19,
         20,
-        21,
-        301,
-        302,
-        303,
-        304
+        21
+      ],
+      "branches": [
+        [
+          201,
+          202,
+          17,
+          21,
+          301,
+          302,
+          303,
+          304
+        ]
       ],
       "speed": 1,
-      "count": 1
-    },
-    {
-      "stations": [],
-      "speed": 1,
-      "count": null
+      "count": 1,
+      "name": "普通"
     }
   ],
-  "title": "JR東日本京葉線",
-  "author": "ponkotuy"
+  "title": "京葉線",
+  "author": "ponkotuy",
+  "company": "JR東日本",
+  "region": "東京"
 }

@@ -146,7 +146,8 @@
         "id": 36,
         "name": "水戸"
       }
-    ]
+    ],
+    "xPos": 0
   },
   "subLines": [
     {
@@ -205,7 +206,8 @@
         36
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -219,7 +221,8 @@
         36
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -239,7 +242,8 @@
         27
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -270,7 +274,8 @@
         36
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "快速"
     },
     {
       "stations": [
@@ -294,7 +299,8 @@
         27
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -310,7 +316,8 @@
         21
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "快速"
     },
     {
       "stations": [
@@ -333,7 +340,8 @@
         109
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -352,7 +360,8 @@
         19
       ],
       "speed": 1,
-      "count": 6
+      "count": 6,
+      "name": "普通"
     },
     {
       "stations": [
@@ -368,9 +377,12 @@
         109
       ],
       "speed": 1,
-      "count": 1
+      "count": 1,
+      "name": "普通"
     }
   ],
-  "title": "JR東日本常磐線",
-  "author": "ponkotuy"
+  "title": "常磐線",
+  "author": "ponkotuy",
+  "company": "JR東日本",
+  "region": "東京"
 }
