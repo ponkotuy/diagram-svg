@@ -134,7 +134,8 @@
         "id": 33,
         "name": "甲府"
       }
-    ]
+    ],
+    "xPos": 0
   },
   "subLines": [
     {
@@ -205,7 +206,8 @@
         33
       ],
       "speed": 7,
-      "count": 2
+      "count": 2,
+      "name": "特急"
     },
     {
       "stations": [
@@ -225,7 +227,8 @@
         32
       ],
       "speed": 6,
-      "count": 4
+      "count": 4,
+      "name": "特別快速"
     },
     {
       "stations": [
@@ -252,7 +255,8 @@
         112
       ],
       "speed": 6,
-      "count": 2
+      "count": 2,
+      "name": "特別快速"
     },
     {
       "stations": [
@@ -279,7 +283,8 @@
         32
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "快速"
     },
     {
       "stations": [
@@ -304,7 +309,8 @@
         30
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "快速"
     },
     {
       "stations": [
@@ -328,7 +334,8 @@
         29
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -362,7 +369,8 @@
         112
       ],
       "speed": 4,
-      "count": 1
+      "count": 1,
+      "name": "快速"
     },
     {
       "stations": [
@@ -384,7 +392,8 @@
         27
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "快速"
     },
     {
       "stations": [
@@ -408,7 +417,8 @@
         20
       ],
       "speed": 1,
-      "count": 8
+      "count": 8,
+      "name": "普通"
     },
     {
       "stations": [
@@ -426,7 +436,8 @@
         14
       ],
       "speed": 1,
-      "count": 4
+      "count": 4,
+      "name": "普通"
     },
     {
       "stations": [
@@ -439,7 +450,8 @@
         20
       ],
       "speed": 1,
-      "count": 4
+      "count": 4,
+      "name": "普通"
     },
     {
       "stations": [
@@ -458,9 +470,12 @@
         112
       ],
       "speed": 1,
-      "count": 2
+      "count": 2,
+      "name": "普通"
     }
   ],
-  "title": "JR東日本中央線",
-  "author": "ponkotuy"
+  "title": "中央線",
+  "author": "ponkotuy",
+  "company": "JR東日本",
+  "region": "東京"
 }
