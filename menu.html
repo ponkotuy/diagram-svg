@@ -69,7 +69,8 @@
     <div class="row" id="menu">
       <ul class="collection">
         <li class="collection-item" v-for="svg in svgs">
-          <a :href="href(svg)">{{svg.name}}({{svg.author}})</a>
+          <a v-if="svg.company" :href="href(svg)">{{svg.company}}-{{svg.name}}({{svg.author}})</a>
+          <a v-else :href="href(svg)">{{svg.name}}({{svg.author}})</a>
         </li>
       </ul>
     </div>
