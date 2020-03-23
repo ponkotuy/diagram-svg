@@ -2,18 +2,17 @@ import _ = require('lodash');
 import {Lines, Train} from "./lines";
 import {TrainStops} from "./trainStops";
 import {Line, Station} from "../common/line";
+import {DiagramAttrs} from "./diagramAttrs";
 
 export class FirstParser {
   readonly rows: string[][];
-  readonly title: string;
-  readonly author: string;
+  readonly attrs: DiagramAttrs;
   readonly forwardTransfers: Set<number> = new Set();
   readonly hasName: boolean;
 
-  constructor(rows: string[][], title: string, author: string) {
+  constructor(rows: string[][], attrs: DiagramAttrs) {
     this.rows = rows;
-    this.title = title;
-    this.author = author;
+    this.attrs = attrs;
     this.hasName = rows[2][0] == 'name';
   }
 
@@ -21,7 +20,7 @@ export class FirstParser {
     const lines = this.parseStations();
     lines.subs.forEach(sub => this.addForwardTransfers(lines.main, sub));
     const trains = this.parseTrains(lines);
-    return lines.toJSON(trains, this.title, this.author);
+    return lines.toJSON(trains, this.attrs);
   }
 
   private addForwardTransfers(main: Line, sub: Line) {

@@ -206,7 +206,8 @@
         "id": 51,
         "name": "箱根湯本"
       }
-    ]
+    ],
+    "xPos": 0
   },
   "subLines": [
     {
@@ -350,7 +351,8 @@
         51
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -361,7 +363,8 @@
         51
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -373,7 +376,8 @@
         116
       ],
       "speed": 7,
-      "count": 1
+      "count": 1,
+      "name": "特急"
     },
     {
       "stations": [
@@ -386,6 +390,7 @@
         28,
         32,
         34,
+        35,
         36,
         37,
         38,
@@ -396,7 +401,8 @@
         47
       ],
       "speed": 5,
-      "count": 3
+      "count": 3,
+      "name": "快速急行"
     },
     {
       "stations": [
@@ -414,7 +420,8 @@
         116
       ],
       "speed": 5,
-      "count": 3
+      "count": 3,
+      "name": "快速急行"
     },
     {
       "stations": [
@@ -438,7 +445,8 @@
         41
       ],
       "speed": 4,
-      "count": 3
+      "count": 3,
+      "name": "急行"
     },
     {
       "stations": [
@@ -455,7 +463,8 @@
         207
       ],
       "speed": 4,
-      "count": 3
+      "count": 3,
+      "name": "急行"
     },
     {
       "stations": [
@@ -495,12 +504,11 @@
         34
       ],
       "speed": 1,
-      "count": 6
+      "count": 6,
+      "name": "普通"
     },
     {
       "stations": [
-        301,
-        302,
         5,
         7,
         11,
@@ -511,8 +519,16 @@
         18,
         19
       ],
+      "branches": [
+        [
+          301,
+          302,
+          5
+        ]
+      ],
       "speed": 2,
-      "count": 3
+      "count": 3,
+      "name": "準急"
     },
     {
       "stations": [
@@ -535,7 +551,8 @@
         116
       ],
       "speed": 1,
-      "count": 6
+      "count": 6,
+      "name": "普通"
     },
     {
       "stations": [
@@ -549,7 +566,8 @@
         207
       ],
       "speed": 1,
-      "count": 6
+      "count": 6,
+      "name": "普通"
     },
     {
       "stations": [
@@ -562,7 +580,8 @@
         47
       ],
       "speed": 1,
-      "count": 3
+      "count": 3,
+      "name": "普通"
     },
     {
       "stations": [
@@ -573,9 +592,12 @@
         51
       ],
       "speed": 1,
-      "count": 3
+      "count": 3,
+      "name": "普通"
     }
   ],
   "title": "小田急全線",
-  "author": "ponkotuy"
+  "author": "ponkotuy",
+  "company": "小田急",
+  "region": "東京"
 }

@@ -16,13 +16,12 @@ export class Lines {
     return [this.main].concat(this.subs);
   }
 
-  toJSON(trains: Train[], title: string, author: string) {
+  toJSON(trains: Train[], attrs: DiagramAttrs) {
     return {
       'mainLine': this.main.toJSON(),
       'subLines': this.subs.map(sub => sub.toJSON()),
       'trains': trains.map(train => train.toJSON()),
-      'title': title,
-      'author': author
+      ...attrs.toJSON()
     };
   }
 
