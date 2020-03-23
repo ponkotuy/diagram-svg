@@ -2,6 +2,7 @@ import _ = require('lodash');
 
 import {TrainStops} from "./trainStops";
 import {Line} from "../common/line";
+import {DiagramAttrs} from "./diagramAttrs";
 
 export class Lines {
   readonly main: Line;
