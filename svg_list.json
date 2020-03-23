@@ -33,7 +33,7 @@
 ,{"file":"data2/nankai_honsen.json", "name":"南海本線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/nankai_koya.json", "name":"南海高野線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/nishitetsu.json", "name":"西鉄大牟田線", "author":"ponkotuy", "company":null, "region":null}
-,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy", "company":"小田急", "region":"東京"}
+,{"file":"data2/odakyu.json", "name":"小田原線", "author":"ponkotuy", "company":"小田急", "region":"東京"}
 ,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/soutetsu.json", "name":"相鉄線", "author":"ponkotuy", "company":null, "region":null}
