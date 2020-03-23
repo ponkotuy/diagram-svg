@@ -13,7 +13,9 @@ for file in `find $1 -maxdepth 1 -name "*.json" | sort`; do
     fi
     title=$(cat $file | jq .title)
     author=$(cat $file | jq .author)
-    echo "{\"file\":\"$file\", \"name\":$title, \"author\":$author}"
+    company=$(cat $file | jq .company)
+    region=$(cat $file | jq .region)
+    echo "{\"file\":\"$file\", \"name\":$title, \"author\":$author, \"company\":$company, \"region\":$region}"
     first=0
 done
 echo ']'

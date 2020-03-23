@@ -1,45 +1,45 @@
 [
-{"file":"data2/hankyu_kobe.json", "name":"阪急神戸線", "author":"ponkotuy"}
-,{"file":"data2/hankyu_kyoto.json", "name":"阪急京都線", "author":"ponkotuy"}
-,{"file":"data2/hankyu_takarazuka.json", "name":"阪急宝塚線", "author":"ponkotuy"}
-,{"file":"data2/hanshin.json", "name":"阪神本線", "author":"ponkotuy"}
-,{"file":"data2/jr_higashi_chuo.json", "name":"中央線", "author":"ponkotuy"}
-,{"file":"data2/jr_higashi_joban.json", "name":"常磐線", "author":"ponkotuy"}
-,{"file":"data2/jr_higashi_keiyo.json", "name":"京葉線", "author":"ponkotuy"}
-,{"file":"data2/jr_higashi_sobu.json", "name":"総武線", "author":"ponkotuy"}
-,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_fukuchiyama.json", "name":"JR西日本福知山線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_hanwa.json", "name":"JR西日本阪和線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_kansai.json", "name":"JR西日本関西本線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_katamachi.json", "name":"JR西日本片町線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_nara.json", "name":"JR西日本奈良線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_sagano.json", "name":"JR西日本嵯峨野線", "author":"ponkotuy"}
-,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy"}
-,{"file":"data2/jr_tokai_chuo.json", "name":"JR東海中央線", "author":"ponkotuy"}
-,{"file":"data2/jr_tokai_tokaido.json", "name":"JR東海東海道本線", "author":"ponkotuy"}
-,{"file":"data2/keihan.json", "name":"京阪本線", "author":"ponkotuy"}
-,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy"}
-,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy"}
-,{"file":"data2/keisei.json", "name":"京成(40分間隔)", "author":"ponkotuy"}
-,{"file":"data2/kintetsu_kyoto.json", "name":"近鉄京都線", "author":"ponkotuy"}
-,{"file":"data2/kintetsu_minamiosaka.json", "name":"近鉄南大阪線", "author":"ponkotuy"}
-,{"file":"data2/kintetsu_nagoya.json", "name":"近鉄名古屋線", "author":"ponkotuy"}
-,{"file":"data2/kintetsu_nara.json", "name":"近鉄奈良線", "author":"ponkotuy"}
-,{"file":"data2/kintetsu_osaka.json", "name":"近鉄大阪線", "author":"ponkotuy"}
-,{"file":"data2/meitetsu_chita.json", "name":"名鉄知多半島方面", "author":"ponkotuy"}
-,{"file":"data2/meitetsu_gifu.json", "name":"名鉄岐阜方面", "author":"ponkotuy"}
-,{"file":"data2/meitetsu_inuyama.json", "name":"名鉄犬山線", "author":"ponkotuy"}
-,{"file":"data2/meitetsu_toyohashi.json", "name":"名鉄豊橋方面", "author":"ponkotuy"}
-,{"file":"data2/nankai_honsen.json", "name":"南海本線", "author":"ponkotuy"}
-,{"file":"data2/nankai_koya.json", "name":"南海高野線", "author":"ponkotuy"}
-,{"file":"data2/nishitetsu.json", "name":"西鉄大牟田線", "author":"ponkotuy"}
-,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy"}
-,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy"}
-,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy"}
-,{"file":"data2/soutetsu.json", "name":"相鉄線", "author":"ponkotuy"}
-,{"file":"data2/tobu_isesaki.json", "name":"東武伊勢崎線", "author":"ponkotuy"}
-,{"file":"data2/tobu_tojo.json", "name":"東武東上線", "author":"ponkotuy"}
-,{"file":"data2/tokyu_denentoshi.json", "name":"東急田園都市線", "author":"ponkotuy"}
-,{"file":"data2/tokyu_toyoko.json", "name":"東急東横線", "author":"ponkotuy"}
-,{"file":"data2/tsukuba_express.json", "name":"つくばエクスプレス", "author":"ponkotuy"}
+{"file":"data2/hankyu_kobe.json", "name":"阪急神戸線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/hankyu_kyoto.json", "name":"阪急京都線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/hankyu_takarazuka.json", "name":"阪急宝塚線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/hanshin.json", "name":"阪神本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_higashi_chuo.json", "name":"中央線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
+,{"file":"data2/jr_higashi_joban.json", "name":"常磐線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
+,{"file":"data2/jr_higashi_keiyo.json", "name":"京葉線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
+,{"file":"data2/jr_higashi_sobu.json", "name":"総武線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
+,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_fukuchiyama.json", "name":"JR西日本福知山線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_hanwa.json", "name":"JR西日本阪和線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_kansai.json", "name":"JR西日本関西本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_katamachi.json", "name":"JR西日本片町線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_nara.json", "name":"JR西日本奈良線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_sagano.json", "name":"JR西日本嵯峨野線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_nishi_tokaido.json", "name":"JR西日本東海道本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_tokai_chuo.json", "name":"JR東海中央線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_tokai_tokaido.json", "name":"JR東海東海道本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/keihan.json", "name":"京阪本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/keisei.json", "name":"京成(40分間隔)", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/kintetsu_kyoto.json", "name":"近鉄京都線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/kintetsu_minamiosaka.json", "name":"近鉄南大阪線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/kintetsu_nagoya.json", "name":"近鉄名古屋線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/kintetsu_nara.json", "name":"近鉄奈良線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/kintetsu_osaka.json", "name":"近鉄大阪線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/meitetsu_chita.json", "name":"名鉄知多半島方面", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/meitetsu_gifu.json", "name":"名鉄岐阜方面", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/meitetsu_inuyama.json", "name":"名鉄犬山線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/meitetsu_toyohashi.json", "name":"名鉄豊橋方面", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/nankai_honsen.json", "name":"南海本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/nankai_koya.json", "name":"南海高野線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/nishitetsu.json", "name":"西鉄大牟田線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/odakyu.json", "name":"小田急全線", "author":"ponkotuy", "company":"小田急", "region":"東京"}
+,{"file":"data2/seibu_ikebukuro.json", "name":"西武池袋線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/seibu_shinjuku.json", "name":"西武新宿線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/soutetsu.json", "name":"相鉄線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/tobu_isesaki.json", "name":"東武伊勢崎線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/tobu_tojo.json", "name":"東武東上線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/tokyu_denentoshi.json", "name":"東急田園都市線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/tokyu_toyoko.json", "name":"東急東横線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/tsukuba_express.json", "name":"つくばエクスプレス", "author":"ponkotuy", "company":"MIR", "region":"東京"}
 ]
