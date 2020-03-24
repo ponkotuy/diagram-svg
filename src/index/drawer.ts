@@ -13,6 +13,7 @@ const DEFAULT_FONT = {'font-size': 20, 'text-anchor': 'start'};
 const TRAIN_NAME_LINE_LENGTH = STATION_HEIGHT * 2;
 
 export class Drawer {
+  readonly snapId: string;
   readonly snap: RaphaelPaper;
   readonly mainLine: Line;
   readonly trains: Train[];
@@ -22,9 +23,9 @@ export class Drawer {
   stationState: { [k: number]: StationState } = {};
   snapWidth = 640;
   snapHeight = 480;
-  snapId = 'svg';
 
-  constructor(main: Line, subs: SubLine[], trains: Train[]) {
+  constructor(snapId: string, main: Line, subs: SubLine[], trains: Train[]) {
+    this.snapId = snapId;
     this.snap = Raphael(this.snapId, this.snapWidth, this.snapHeight);
     this.mainLine = main;
     this.trains = trains;
@@ -150,6 +151,7 @@ export class Drawer {
   drawTrainName(yPos: number) {
     _(this.trains)
       .filter(train => train.name != null)
+      .sortBy(train => -train.speed)
       .uniqBy(train => train.name)
       .forEach((train, idx) => {
         const left = new Position(STATION_HEIGHT * 0.5, yPos + STATION_HEIGHT * (idx + 0.5));

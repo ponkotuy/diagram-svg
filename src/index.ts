@@ -43,7 +43,7 @@ function draw(url: string) {
       const main = Line.fromObj(json.mainLine);
       const sub = json.subLines.map(line => new SubLine(Line.fromObj(line), main));
       const ts = json.trains.map(train => new Train(train));
-      drawer = new Drawer(main, sub, ts);
+      drawer = new Drawer('svg', main, sub, ts);
       drawer.draw();
     });
   });
