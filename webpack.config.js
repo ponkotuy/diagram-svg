@@ -3,7 +3,8 @@ module.exports = {
   entry: {
     index: "./src/index.ts",
     csv2json: "./src/csv2json.ts",
-    menu: "./src/menu.ts"
+    menu: "./src/menu.ts",
+    tests: "./src/tests.ts"
   },
   output: {
     filename: '[name].js'
