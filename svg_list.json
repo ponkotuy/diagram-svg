@@ -18,7 +18,7 @@
 ,{"file":"data2/jr_tokai_chuo.json", "name":"JR東海中央線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/jr_tokai_tokaido.json", "name":"JR東海東海道本線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/keihan.json", "name":"京阪本線", "author":"ponkotuy", "company":null, "region":null}
-,{"file":"data2/keikyu.json", "name":"京急", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/keikyu.json", "name":"京急線", "author":"ponkotuy", "company":"京急", "region":"東京"}
 ,{"file":"data2/keio.json", "name":"京王線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/keisei.json", "name":"京成(40分間隔)", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/kintetsu_kyoto.json", "name":"近鉄京都線", "author":"ponkotuy", "company":null, "region":null}

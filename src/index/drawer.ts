@@ -1,10 +1,11 @@
-import {Line, Station, SubLine} from "../common/line";
+import {Line, SubLine} from "../common/line";
 import {Train} from "../common/train";
 import {Position} from "./position";
 import {StationState, TRAIN_WIDTH} from "./stationState"
 import _ = require('lodash');
 import Raphael = require('raphael');
 import {SpeedStyle} from "./speedStyle";
+import {Station} from "../common/station";
 
 const STATION_HEIGHT = 28;
 const STATION_TRAIN = 8;
