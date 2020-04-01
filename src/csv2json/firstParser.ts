@@ -1,8 +1,9 @@
 import _ = require('lodash');
 import {Lines, Train} from "./lines";
 import {TrainStops} from "./trainStops";
-import {Line, Station} from "../common/line";
+import {Line} from "../common/line";
 import {DiagramAttrs} from "./diagramAttrs";
+import {Station, StationRank} from "../common/station";
 
 export class FirstParser {
   readonly rows: string[][];
@@ -31,11 +32,13 @@ export class FirstParser {
 
   parseStations() {
     const stationRows = this.rows.slice(this.headerCount());
+    const hasRank = !isNaN(parseInt(stationRows[0][1]));
     const rawLines: RawLine[] = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
-      const [idRow, name] = row;
-      if(name) rawLines[rawLines.length - 1].stations.push({id: parseInt(idRow), name: name});
-      else rawLines.push({xPos: parseInt(idRow) || 0, stations: []})
+      const first = parseInt(row[0]); // ID or xPos
+      const [name, rank] = hasRank ? [row[2], parseInt(row[1])] : [row[1], null];
+      if(name) rawLines[rawLines.length - 1].stations.push({id: first, name: name, rank: StationRank.parse(rank)});
+      else rawLines.push({xPos: first || 0, stations: []})
     });
     const lines = rawLines.map((line, idx) => new Line(idx + 1, line.stations, line.xPos));
     return new Lines(lines[0], lines.slice(1));

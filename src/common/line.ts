@@ -1,4 +1,5 @@
 import _ = require('lodash');
+import {Station, StationObj} from "./station";
 
 export class Line {
   readonly id: number;
@@ -76,19 +77,4 @@ export type LineObj = {
   id: number,
   stations: StationObj[]
   xPos: number | null;
-}
-
-export class Station {
-  readonly id: number;
-  readonly name: string;
-
-  constructor(station: StationObj) {
-    this.id = station.id;
-    this.name = station.name;
-  }
-}
-
-export type StationObj = {
-  id: number,
-  name: string
 }
