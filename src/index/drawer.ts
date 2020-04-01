@@ -157,7 +157,6 @@ export class Drawer {
       .forEach((train, idx) => {
         const left = new Position(STATION_HEIGHT * 0.5, yPos + STATION_HEIGHT * (idx + 0.5));
         const right = left.addX(TRAIN_NAME_LINE_LENGTH);
-        console.log(left, right);
         const circleStyle = train.style().station();
         this.snap.circle(left.x, left.y, STOP_SIZE).attr(circleStyle);
         this.snap.circle(right.x, right.y, STOP_SIZE).attr(circleStyle);

@@ -10,11 +10,13 @@ export class FirstParser {
   readonly attrs: DiagramAttrs;
   readonly forwardTransfers: Set<number> = new Set();
   readonly hasName: boolean;
+  readonly hasRank: boolean;
 
   constructor(rows: string[][], attrs: DiagramAttrs) {
     this.rows = rows;
     this.attrs = attrs;
     this.hasName = rows[2][0] == 'name';
+    this.hasRank = !isNaN(parseInt(rows[this.headerCount()][1]));
   }
 
   parse() {
@@ -32,11 +34,10 @@ export class FirstParser {
 
   parseStations() {
     const stationRows = this.rows.slice(this.headerCount());
-    const hasRank = !isNaN(parseInt(stationRows[0][1]));
     const rawLines: RawLine[] = [{xPos: 0, stations: []}];
     stationRows.forEach(row => {
       const first = parseInt(row[0]); // ID or xPos
-      const [name, rank] = hasRank ? [row[2], parseInt(row[1])] : [row[1], null];
+      const [name, rank] = this.hasRank ? [row[2], parseInt(row[1])] : [row[1], null];
       if(name) rawLines[rawLines.length - 1].stations.push({id: first, name: name, rank: StationRank.parse(rank)});
       else rawLines.push({xPos: first || 0, stations: []})
     });
@@ -45,15 +46,16 @@ export class FirstParser {
   }
 
   parseTrains(lines: Lines) {
-    const speeds = this.rows[0].slice(2);
-    const counts = this.rows[1].slice(2);
-    const names = this.hasName ? this.rows[2].slice(2) : null;
+    const hCount = this.statrionHeaderCount();
+    const speeds = this.rows[0].slice(hCount);
+    const counts = this.rows[1].slice(hCount);
+    const names = this.hasName ? this.rows[2].slice(hCount) : null;
     const train_stops: TrainStops[] = [];
     speeds.forEach(_ => train_stops.push(new TrainStops(lines, [])));
     this.rows.slice(this.headerCount()).forEach(row => {
       if(row[0]) {
         const stationId = parseInt(row[0]);
-        const stops = row.slice(2);
+        const stops = row.slice(hCount);
         speeds.forEach((speed, idx) => {
           if(stops[idx]) {
             train_stops[idx].push(stationId);
@@ -68,6 +70,10 @@ export class FirstParser {
 
   private headerCount() {
     return this.hasName ? 3 : 2;
+  }
+
+  private statrionHeaderCount() {
+    return this.hasRank ? 3 : 2;
   }
 }
 
