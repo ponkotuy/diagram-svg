@@ -9,6 +9,7 @@ QUnit.test("first", (assert) => {
 draw('old', 'test_data/keio.json');
 draw('new', 'test_data/jr_nishi_hanwa.json');
 draw('20200325', 'test_data/odakyu.json');
+draw('20200402', 'test_data/keikyu.json');
 
 function draw(id: string, url: string) {
   fetch(url).then(res => {
