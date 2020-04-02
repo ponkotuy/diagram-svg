@@ -6,6 +6,7 @@ import _ = require('lodash');
 import Raphael = require('raphael');
 import {SpeedStyle} from "./speedStyle";
 import {Station} from "../common/station";
+import {StationStyle} from "./stationStyle";
 
 const STATION_HEIGHT = 28;
 const STATION_TRAIN = 8;
@@ -52,8 +53,11 @@ export class Drawer {
     const texts = stations.map((st, idx) => {
       const posY = baseY + STATION_HEIGHT * (idx + 0.5);
       this.stationState[st.id] = new StationState(new Position(x, posY));
+      const style = st.rank ? StationStyle.fromRank(st.rank) : StationStyle.DEFAULT;
+      const attr = {...DEFAULT_FONT, ...style.font()};
       const text = this.snap.text(x, posY + STATION_TRAIN, st.name);
-      text.attr(DEFAULT_FONT);
+      text.attr(attr);
+      if(style.underline) text.node.style.textDecoration = 'underline';
       return text;
     });
     const maxWidth = Math.max(...texts.map(text => text.getBBox().width));
