@@ -4,411 +4,513 @@
     "stations": [
       {
         "id": 1,
-        "name": "大分"
+        "name": "大分",
+        "rank": 2
       },
       {
         "id": 2,
-        "name": "別府"
+        "name": "別府",
+        "rank": 2
       },
       {
         "id": 3,
-        "name": "杵築"
+        "name": "杵築",
+        "rank": 4
       },
       {
         "id": 4,
-        "name": "宇佐"
+        "name": "宇佐",
+        "rank": 4
       },
       {
         "id": 5,
-        "name": "柳ヶ浦"
+        "name": "柳ヶ浦",
+        "rank": 4
       },
       {
         "id": 6,
-        "name": "中津"
+        "name": "中津",
+        "rank": 3
       },
       {
         "id": 7,
-        "name": "吉富"
+        "name": "吉富",
+        "rank": 5
       },
       {
         "id": 8,
-        "name": "三毛門"
+        "name": "三毛門",
+        "rank": 5
       },
       {
         "id": 9,
-        "name": "宇島"
+        "name": "宇島",
+        "rank": 4
       },
       {
         "id": 10,
-        "name": "豊前松江"
+        "name": "豊前松江",
+        "rank": 5
       },
       {
         "id": 11,
-        "name": "椎田"
+        "name": "椎田",
+        "rank": 5
       },
       {
         "id": 12,
-        "name": "築城"
+        "name": "築城",
+        "rank": 5
       },
       {
         "id": 13,
-        "name": "新田原"
+        "name": "新田原",
+        "rank": 5
       },
       {
         "id": 14,
-        "name": "南行橋"
+        "name": "南行橋",
+        "rank": 5
       },
       {
         "id": 15,
-        "name": "行橋"
+        "name": "行橋",
+        "rank": 3
       },
       {
         "id": 16,
-        "name": "小波瀬西工大前"
+        "name": "小波瀬西工大前",
+        "rank": 5
       },
       {
         "id": 17,
-        "name": "苅田"
+        "name": "苅田",
+        "rank": 5
       },
       {
         "id": 18,
-        "name": "朽網"
+        "name": "朽網",
+        "rank": 5
       },
       {
         "id": 19,
-        "name": "下曽根"
+        "name": "下曽根",
+        "rank": 5
       },
       {
         "id": 20,
-        "name": "安部山公園"
+        "name": "安部山公園",
+        "rank": 5
       },
       {
         "id": 21,
-        "name": "城野"
+        "name": "城野",
+        "rank": 5
       },
       {
         "id": 22,
-        "name": "南小倉"
+        "name": "南小倉",
+        "rank": 5
       },
       {
         "id": 23,
-        "name": "西小倉"
+        "name": "西小倉",
+        "rank": 5
       },
       {
         "id": 24,
-        "name": "小倉"
+        "name": "小倉",
+        "rank": 1
       },
       {
         "id": 25,
-        "name": "西小倉"
+        "name": "西小倉",
+        "rank": 5
       },
       {
         "id": 26,
-        "name": "九州工大前"
+        "name": "九州工大前",
+        "rank": 5
       },
       {
         "id": 27,
-        "name": "戸畑"
+        "name": "戸畑",
+        "rank": 3
       },
       {
         "id": 28,
-        "name": "枝光"
+        "name": "枝光",
+        "rank": 5
       },
       {
         "id": 29,
-        "name": "スペースワールド"
+        "name": "スペースワールド",
+        "rank": 5
       },
       {
         "id": 30,
-        "name": "八幡"
+        "name": "八幡",
+        "rank": 4
       },
       {
         "id": 31,
-        "name": "黒崎"
+        "name": "黒崎",
+        "rank": 3
       },
       {
         "id": 32,
-        "name": "陣原"
+        "name": "陣原",
+        "rank": 5
       },
       {
         "id": 33,
-        "name": "折尾"
+        "name": "折尾",
+        "rank": 3
       },
       {
         "id": 34,
-        "name": "水巻"
+        "name": "水巻",
+        "rank": 5
       },
       {
         "id": 35,
-        "name": "遠賀川"
+        "name": "遠賀川",
+        "rank": 5
       },
       {
         "id": 36,
-        "name": "海老津"
+        "name": "海老津",
+        "rank": 5
       },
       {
         "id": 37,
-        "name": "教育大前"
+        "name": "教育大前",
+        "rank": 5
       },
       {
         "id": 38,
-        "name": "赤間"
+        "name": "赤間",
+        "rank": 4
       },
       {
         "id": 39,
-        "name": "東郷"
+        "name": "東郷",
+        "rank": 4
       },
       {
         "id": 40,
-        "name": "東福間"
+        "name": "東福間",
+        "rank": 5
       },
       {
         "id": 41,
-        "name": "福間"
+        "name": "福間",
+        "rank": 4
       },
       {
         "id": 42,
-        "name": "千鳥"
+        "name": "千鳥",
+        "rank": 5
       },
       {
         "id": 43,
-        "name": "古賀"
+        "name": "古賀",
+        "rank": 4
       },
       {
         "id": 44,
-        "name": "ししぶ"
+        "name": "ししぶ",
+        "rank": 5
       },
       {
         "id": 45,
-        "name": "新宮中央"
+        "name": "新宮中央",
+        "rank": 5
       },
       {
         "id": 46,
-        "name": "福工大前"
+        "name": "福工大前",
+        "rank": 4
       },
       {
         "id": 47,
-        "name": "九産大前"
+        "name": "九産大前",
+        "rank": 5
       },
       {
         "id": 48,
-        "name": "香椎"
+        "name": "香椎",
+        "rank": 3
       },
       {
         "id": 49,
-        "name": "千早"
+        "name": "千早",
+        "rank": 5
       },
       {
         "id": 50,
-        "name": "箱崎"
+        "name": "箱崎",
+        "rank": 5
       },
       {
         "id": 51,
-        "name": "吉塚"
+        "name": "吉塚",
+        "rank": 5
       },
       {
         "id": 52,
-        "name": "博多"
+        "name": "博多",
+        "rank": 1
       },
       {
         "id": 53,
-        "name": "竹下"
+        "name": "竹下",
+        "rank": 5
       },
       {
         "id": 54,
-        "name": "笹原"
+        "name": "笹原",
+        "rank": 5
       },
       {
         "id": 55,
-        "name": "南福岡"
+        "name": "南福岡",
+        "rank": 4
       },
       {
         "id": 56,
-        "name": "春日"
+        "name": "春日",
+        "rank": 5
       },
       {
         "id": 57,
-        "name": "大野城"
+        "name": "大野城",
+        "rank": 4
       },
       {
         "id": 58,
-        "name": "水城"
+        "name": "水城",
+        "rank": 5
       },
       {
         "id": 59,
-        "name": "都府楼南"
+        "name": "都府楼南",
+        "rank": 5
       },
       {
         "id": 60,
-        "name": "二日市"
+        "name": "二日市",
+        "rank": 3
       },
       {
         "id": 61,
-        "name": "天拝山"
+        "name": "天拝山",
+        "rank": 5
       },
       {
         "id": 62,
-        "name": "原田"
+        "name": "原田",
+        "rank": 4
       },
       {
         "id": 63,
-        "name": "けやき台"
+        "name": "けやき台",
+        "rank": 5
       },
       {
         "id": 64,
-        "name": "基山"
+        "name": "基山",
+        "rank": 4
       },
       {
         "id": 65,
-        "name": "弥生が丘"
+        "name": "弥生が丘",
+        "rank": 5
       },
       {
         "id": 66,
-        "name": "田代"
+        "name": "田代",
+        "rank": 5
       },
       {
         "id": 67,
-        "name": "鳥栖"
+        "name": "鳥栖",
+        "rank": 2
       },
       {
         "id": 68,
-        "name": "肥前旭"
+        "name": "肥前旭",
+        "rank": 5
       },
       {
         "id": 69,
-        "name": "久留米"
+        "name": "久留米",
+        "rank": 3
       },
       {
         "id": 70,
-        "name": "荒木"
+        "name": "荒木",
+        "rank": 5
       },
       {
         "id": 71,
-        "name": "西牟田"
+        "name": "西牟田",
+        "rank": 5
       },
       {
         "id": 72,
-        "name": "羽犬塚"
+        "name": "羽犬塚",
+        "rank": 4
       },
       {
         "id": 73,
-        "name": "筑後船小屋"
+        "name": "筑後船小屋",
+        "rank": 4
       },
       {
         "id": 74,
-        "name": "瀬高"
+        "name": "瀬高",
+        "rank": 4
       },
       {
         "id": 75,
-        "name": "南瀬高"
+        "name": "南瀬高",
+        "rank": 5
       },
       {
         "id": 76,
-        "name": "渡瀬"
+        "name": "渡瀬",
+        "rank": 5
       },
       {
         "id": 77,
-        "name": "吉野"
+        "name": "吉野",
+        "rank": 5
       },
       {
         "id": 78,
-        "name": "銀水"
+        "name": "銀水",
+        "rank": 5
       },
       {
         "id": 79,
-        "name": "大牟田"
+        "name": "大牟田",
+        "rank": 3
       },
       {
         "id": 80,
-        "name": "荒尾"
+        "name": "荒尾",
+        "rank": 4
       },
       {
         "id": 81,
-        "name": "南荒尾"
+        "name": "南荒尾",
+        "rank": 5
       },
       {
         "id": 82,
-        "name": "長洲"
+        "name": "長洲",
+        "rank": 5
       },
       {
         "id": 83,
-        "name": "大野下"
+        "name": "大野下",
+        "rank": 5
       },
       {
         "id": 84,
-        "name": "玉名"
+        "name": "玉名",
+        "rank": 5
       },
       {
         "id": 85,
-        "name": "肥後伊倉"
+        "name": "肥後伊倉",
+        "rank": 5
       },
       {
         "id": 86,
-        "name": "木葉"
+        "name": "木葉",
+        "rank": 5
       },
       {
         "id": 87,
-        "name": "田原坂"
+        "name": "田原坂",
+        "rank": 5
       },
       {
         "id": 88,
-        "name": "植木"
+        "name": "植木",
+        "rank": 5
       },
       {
         "id": 89,
-        "name": "西里"
+        "name": "西里",
+        "rank": 5
       },
       {
         "id": 90,
-        "name": "崇城大学前"
+        "name": "崇城大学前",
+        "rank": 5
       },
       {
         "id": 91,
-        "name": "上熊本"
+        "name": "上熊本",
+        "rank": 4
       },
       {
         "id": 92,
-        "name": "熊本"
+        "name": "熊本",
+        "rank": 2
       },
       {
         "id": 93,
-        "name": "西熊本"
+        "name": "西熊本",
+        "rank": 5
       },
       {
         "id": 94,
-        "name": "川尻"
+        "name": "川尻",
+        "rank": 5
       },
       {
         "id": 95,
-        "name": "富合"
+        "name": "富合",
+        "rank": 5
       },
       {
         "id": 96,
-        "name": "宇土"
+        "name": "宇土",
+        "rank": 3
       },
       {
         "id": 97,
-        "name": "松橋"
+        "name": "松橋",
+        "rank": 5
       },
       {
         "id": 98,
-        "name": "小川"
+        "name": "小川",
+        "rank": 5
       },
       {
         "id": 99,
-        "name": "有佐"
+        "name": "有佐",
+        "rank": 5
       },
       {
         "id": 100,
-        "name": "千丁"
+        "name": "千丁",
+        "rank": 5
       },
       {
         "id": 101,
-        "name": "新八代"
+        "name": "新八代",
+        "rank": 3
       },
       {
         "id": 102,
-        "name": "八代"
+        "name": "八代",
+        "rank": 3
       }
     ],
     "xPos": 0
@@ -419,11 +521,13 @@
       "stations": [
         {
           "id": 67,
-          "name": "鳥栖"
+          "name": "鳥栖",
+          "rank": 2
         },
         {
           "id": 1001,
-          "name": "佐賀"
+          "name": "佐賀",
+          "rank": 2
         }
       ],
       "xPos": -10
@@ -854,6 +958,8 @@
       "name": "普通"
     }
   ],
-  "title": "JR九州鹿児島本線",
-  "author": "ponkotuy"
+  "title": "鹿児島本線",
+  "author": "ponkotuy",
+  "company": "JR九州",
+  "region": "九州"
 }
