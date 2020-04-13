@@ -4,199 +4,248 @@
     "stations": [
       {
         "id": 1,
-        "name": "西鉄福岡"
+        "name": "西鉄福岡",
+        "rank": 1
       },
       {
         "id": 2,
-        "name": "薬院"
+        "name": "薬院",
+        "rank": 3
       },
       {
         "id": 3,
-        "name": "西鉄平尾"
+        "name": "西鉄平尾",
+        "rank": 5
       },
       {
         "id": 4,
-        "name": "高宮"
+        "name": "高宮",
+        "rank": 5
       },
       {
         "id": 5,
-        "name": "大橋"
+        "name": "大橋",
+        "rank": 3
       },
       {
         "id": 6,
-        "name": "井尻"
+        "name": "井尻",
+        "rank": 5
       },
       {
         "id": 7,
-        "name": "雑餉隈"
+        "name": "雑餉隈",
+        "rank": 5
       },
       {
         "id": 8,
-        "name": "春日原"
+        "name": "春日原",
+        "rank": 4
       },
       {
         "id": 9,
-        "name": "白木原"
+        "name": "白木原",
+        "rank": 5
       },
       {
         "id": 10,
-        "name": "下大利"
+        "name": "下大利",
+        "rank": 4
       },
       {
         "id": 11,
-        "name": "都府楼前"
+        "name": "都府楼前",
+        "rank": 5
       },
       {
         "id": 12,
-        "name": "西鉄二日市"
+        "name": "西鉄二日市",
+        "rank": 3
       },
       {
         "id": 13,
-        "name": "紫"
+        "name": "紫",
+        "rank": 5
       },
       {
         "id": 14,
-        "name": "朝倉街道"
+        "name": "朝倉街道",
+        "rank": 4
       },
       {
         "id": 15,
-        "name": "桜台"
+        "name": "桜台",
+        "rank": 5
       },
       {
         "id": 16,
-        "name": "筑紫"
+        "name": "筑紫",
+        "rank": 4
       },
       {
         "id": 17,
-        "name": "津古"
+        "name": "津古",
+        "rank": 5
       },
       {
         "id": 18,
-        "name": "三国が丘"
+        "name": "三国が丘",
+        "rank": 4
       },
       {
         "id": 19,
-        "name": "三沢"
+        "name": "三沢",
+        "rank": 5
       },
       {
         "id": 20,
-        "name": "大保"
+        "name": "大保",
+        "rank": 5
       },
       {
         "id": 21,
-        "name": "西鉄小郡"
+        "name": "西鉄小郡",
+        "rank": 4
       },
       {
         "id": 22,
-        "name": "端間"
+        "name": "端間",
+        "rank": 5
       },
       {
         "id": 23,
-        "name": "味坂"
+        "name": "味坂",
+        "rank": 5
       },
       {
         "id": 24,
-        "name": "宮の陣"
+        "name": "宮の陣",
+        "rank": 4
       },
       {
         "id": 25,
-        "name": "櫛原"
+        "name": "櫛原",
+        "rank": 5
       },
       {
         "id": 26,
-        "name": "西鉄久留米"
+        "name": "西鉄久留米",
+        "rank": 2
       },
       {
         "id": 27,
-        "name": "花畑"
+        "name": "花畑",
+        "rank": 3
       },
       {
         "id": 28,
-        "name": "試験場前"
+        "name": "試験場前",
+        "rank": 5
       },
       {
         "id": 29,
-        "name": "津福"
+        "name": "津福",
+        "rank": 5
       },
       {
         "id": 30,
-        "name": "安武"
+        "name": "安武",
+        "rank": 5
       },
       {
         "id": 31,
-        "name": "大善寺"
+        "name": "大善寺",
+        "rank": 3
       },
       {
         "id": 32,
-        "name": "三潴"
+        "name": "三潴",
+        "rank": 5
       },
       {
         "id": 33,
-        "name": "犬塚"
+        "name": "犬塚",
+        "rank": 5
       },
       {
         "id": 34,
-        "name": "大溝"
+        "name": "大溝",
+        "rank": 5
       },
       {
         "id": 35,
-        "name": "八丁牟田"
+        "name": "八丁牟田",
+        "rank": 5
       },
       {
         "id": 36,
-        "name": "蒲池"
+        "name": "蒲池",
+        "rank": 5
       },
       {
         "id": 37,
-        "name": "矢加部"
+        "name": "矢加部",
+        "rank": 5
       },
       {
         "id": 38,
-        "name": "西鉄柳川"
+        "name": "西鉄柳川",
+        "rank": 3
       },
       {
         "id": 39,
-        "name": "徳益"
+        "name": "徳益",
+        "rank": 5
       },
       {
         "id": 40,
-        "name": "塩塚"
+        "name": "塩塚",
+        "rank": 5
       },
       {
         "id": 41,
-        "name": "西鉄中島"
+        "name": "西鉄中島",
+        "rank": 5
       },
       {
         "id": 42,
-        "name": "江の浦"
+        "name": "江の浦",
+        "rank": 5
       },
       {
         "id": 43,
-        "name": "開"
+        "name": "開",
+        "rank": 5
       },
       {
         "id": 44,
-        "name": "西鉄渡瀬"
+        "name": "西鉄渡瀬",
+        "rank": 5
       },
       {
         "id": 45,
-        "name": "倉永"
+        "name": "倉永",
+        "rank": 5
       },
       {
         "id": 46,
-        "name": "東甘木"
+        "name": "東甘木",
+        "rank": 5
       },
       {
         "id": 47,
-        "name": "西鉄銀水"
+        "name": "西鉄銀水",
+        "rank": 5
       },
       {
         "id": 48,
-        "name": "新栄町"
+        "name": "新栄町",
+        "rank": 3
       },
       {
         "id": 49,
-        "name": "大牟田"
+        "name": "大牟田",
+        "rank": 2
       }
     ],
     "xPos": 0
@@ -207,55 +256,68 @@
       "stations": [
         {
           "id": 101,
-          "name": "甘木"
+          "name": "甘木",
+          "rank": 3
         },
         {
           "id": 102,
-          "name": "馬田"
+          "name": "馬田",
+          "rank": 5
         },
         {
           "id": 103,
-          "name": "上浦"
+          "name": "上浦",
+          "rank": 5
         },
         {
           "id": 104,
-          "name": "本郷"
+          "name": "本郷",
+          "rank": 5
         },
         {
           "id": 105,
-          "name": "大堰"
+          "name": "大堰",
+          "rank": 5
         },
         {
           "id": 106,
-          "name": "金島"
+          "name": "金島",
+          "rank": 5
         },
         {
           "id": 107,
-          "name": "大城"
+          "name": "大城",
+          "rank": 5
         },
         {
           "id": 108,
-          "name": "北野"
+          "name": "北野",
+          "rank": 5
         },
         {
           "id": 109,
-          "name": "古賀茶屋"
+          "name": "古賀茶屋",
+          "rank": 5
         },
         {
           "id": 110,
-          "name": "学校丸"
+          "name": "学校丸",
+          "rank": 5
         },
         {
           "id": 111,
-          "name": "宮の陣"
+          "name": "宮の陣",
+          "rank": 5
         },
         {
           "id": 112,
-          "name": "櫛原"
+          "name": "櫛原",
+          "rank": 5
         },
         {
           "id": 26,
-          "name": "西鉄久留米"
+          "name": "西鉄久留米",
+          "rank": 2
         }
       ],
       "xPos": 0
@@ -276,7 +338,8 @@
         49
       ],
       "speed": 7,
-      "count": 2
+      "count": 2,
+      "name": "特急"
     },
     {
       "stations": [
@@ -295,7 +358,8 @@
         27
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "特急"
     },
     {
       "stations": [
@@ -311,7 +375,8 @@
         21
       ],
       "speed": 4,
-      "count": 2
+      "count": 2,
+      "name": "急行"
     },
     {
       "stations": [
@@ -348,7 +413,8 @@
         31
       ],
       "speed": 1,
-      "count": 2
+      "count": 2,
+      "name": "急行"
     },
     {
       "stations": [
@@ -370,7 +436,8 @@
         16
       ],
       "speed": 1,
-      "count": 2
+      "count": 2,
+      "name": "普通"
     },
     {
       "stations": [
@@ -388,7 +455,8 @@
         12
       ],
       "speed": 1,
-      "count": 2
+      "count": 2,
+      "name": "普通"
     },
     {
       "stations": [
@@ -435,9 +503,12 @@
         ]
       ],
       "speed": 1,
-      "count": 2
+      "count": 2,
+      "name": "普通"
     }
   ],
-  "title": "西鉄大牟田線",
-  "author": "ponkotuy"
+  "title": "全線",
+  "author": "ponkotuy",
+  "company": "西鉄",
+  "region": "九州"
 }
