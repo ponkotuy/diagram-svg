@@ -7,7 +7,7 @@
 ,{"file":"data2/jr_higashi_joban.json", "name":"常磐線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
 ,{"file":"data2/jr_higashi_keiyo.json", "name":"京葉線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
 ,{"file":"data2/jr_higashi_sobu.json", "name":"総武線", "author":"ponkotuy", "company":"JR東日本", "region":"東京"}
-,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"JR九州鹿児島本線", "author":"ponkotuy", "company":null, "region":null}
+,{"file":"data2/jr_kyusyu_kagoshima.json", "name":"鹿児島本線", "author":"ponkotuy", "company":"JR九州", "region":"九州"}
 ,{"file":"data2/jr_nishi_fukuchiyama.json", "name":"JR西日本福知山線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/jr_nishi_hanwa.json", "name":"JR西日本阪和線", "author":"ponkotuy", "company":null, "region":null}
 ,{"file":"data2/jr_nishi_kansai.json", "name":"JR西日本関西本線", "author":"ponkotuy", "company":null, "region":null}
