@@ -10,7 +10,7 @@
     "@types/lodash": "^4.14.149",
     "@types/raphael": "^2.1.30",
     "@types/qunit": "^2.9.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "npm-watch": "^0.6.0",
     "papaparse": "^5.1.1",
     "qunit": "^2.9.3",
