@@ -6,24 +6,24 @@ on:
       - master
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build Builder
-      run: docker-compose build
-    - name: Run Builder
-      run: docker-compose run builder
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
     - name: generate svg_list.json
       run: ./scripts/create_svg_list.sh data2 > svg_list.json
     - name: Remove .gitignore
       run: rm .gitignore
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: .
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: .
