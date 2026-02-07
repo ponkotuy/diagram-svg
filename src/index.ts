@@ -18,6 +18,8 @@ if(!input.value) {
   input.value = `${location.toString()}data/keikyu.json`;
 }
 
+let drawer: Drawer | null = null;
+
 setUrl();
 
 function setUrlEvent(event: Event) {
@@ -32,8 +34,6 @@ function setUrl() {
   history.replaceState('', '', '?' + params.toString());
   draw(input.value);
 }
-
-let drawer: Drawer | null = null;
 
 function draw(url: string) {
   if(drawer) drawer.clear();
