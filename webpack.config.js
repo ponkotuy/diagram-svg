@@ -7,7 +7,8 @@ module.exports = {
     tests: "./src/tests.ts"
   },
   output: {
-    filename: '[name].js'
+    filename: '[name].js',
+    clean: true
   },
   devtool: 'inline-source-map',
   module: {
@@ -19,9 +20,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".ts"],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.browser.min.js'
-    }
+    extensions: [".ts", ".js"]
   }
 };

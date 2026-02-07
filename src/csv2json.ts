@@ -1,4 +1,4 @@
-import papa = require('papaparse');
+import * as papa from 'papaparse';
 import {FirstParser} from "./csv2json/firstParser";
 import {DiagramAttrs} from "./csv2json/diagramAttrs";
 
@@ -27,7 +27,7 @@ function saveJSON() {
   const attrs = new DiagramAttrs(title, author, company, region);
   fetch(url, OPTIONS).then(response => {
     response.text().then(text => {
-      const records  = papa.parse(text).data;
+      const records  = papa.parse<string[]>(text).data;
       const first = new FirstParser(records, attrs);
       const result = JSON.stringify(first.parse(), null, 2);
       const a = document.createElement('a');

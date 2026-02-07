@@ -1,4 +1,3 @@
-import _ = require('lodash');
 import {Station, StationObj} from "./station";
 
 export class Line {
@@ -21,15 +20,15 @@ export class Line {
   }
 
   hasStation(stationId: number) {
-    return _.some(this.stations, station => station.id == stationId);
+    return this.stations.some(station => station.id == stationId);
   }
 
   findStation(stationId: number) {
-    return _.find(this.stations, station => station.id == stationId);
+    return this.stations.find(station => station.id == stationId);
   }
 
   findStationIdx(stationId: number) {
-    return _.findIndex(this.stations, station => station.id == stationId);
+    return this.stations.findIndex(station => station.id == stationId);
   }
 }
 
@@ -47,7 +46,7 @@ export class SubLine {
   constructor(line: Line, main: Line) {
     this.line = line;
     const mainStations = main.stations.map(st => st.id);
-    const tranfer: Station | undefined = _.find(line.stations, st => _.includes(mainStations, st.id));
+    const tranfer: Station | undefined = line.stations.find(st => mainStations.includes(st.id));
     if(tranfer == undefined) throw new Error(`Line id=${line.id} does not exists transfer station.`);
     this.transfer = tranfer;
   }
@@ -69,7 +68,7 @@ export class SubLine {
   }
 
   transferIdx() {
-    return _.findIndex(this.stations(), st => st.id == this.transfer.id)
+    return this.stations().findIndex(st => st.id == this.transfer.id)
   }
 }
 
