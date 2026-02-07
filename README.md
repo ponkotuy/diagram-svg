@@ -166,4 +166,4 @@ GitHub Actions automatically deploys to GitHub Pages on every push to `master`. 
 
 ## License
 
-See repository for license details.
+This project is licensed under the [MIT License](LICENSE).
