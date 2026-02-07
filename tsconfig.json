@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "experimentalDecorators": true,
     "allowJs": true,
     "strict": true,
     "target": "ES2020",
