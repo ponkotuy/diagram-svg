@@ -1,4 +1,3 @@
-import _ = require('lodash');
 import {Lines, Train} from "./lines";
 import {TrainStops} from "./trainStops";
 import {Line} from "../common/line";
@@ -28,7 +27,7 @@ export class FirstParser {
 
   private addForwardTransfers(main: Line, sub: Line) {
     const mainStations = main.stations.map(st => st.id);
-    const idx = _.findIndex(sub.stations, st => mainStations.indexOf(st.id) != -1);
+    const idx = sub.stations.findIndex(st => mainStations.indexOf(st.id) != -1);
     sub.stations.slice(0, idx).forEach(st => this.forwardTransfers.add(st.id));
   }
 

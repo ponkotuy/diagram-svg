@@ -2,8 +2,7 @@ import {Line, SubLine} from "../common/line";
 import {Train} from "../common/train";
 import {Position} from "./position";
 import {StationState, TRAIN_WIDTH} from "./stationState"
-import _ = require('lodash');
-import Raphael = require('raphael');
+import Raphael from 'raphael';
 import {SpeedStyle} from "./speedStyle";
 import {Station} from "../common/station";
 import {StationStyle} from "./stationStyle";
@@ -32,14 +31,13 @@ export class Drawer {
     this.mainLine = main;
     this.trains = trains;
     this.subLines = subs;
-    this.stations = _(main.stations.map(st => st.id))
-      .concat(_.flatMap(subs, sub => sub.stations().map(st => st.id)))
-      .sortedUniq().value();
+    const subStationIds = subs.flatMap(sub => sub.stations().map(st => st.id));
+    this.stations = [...new Set([...main.stations.map(st => st.id), ...subStationIds].sort((a, b) => a - b))];
     subs.forEach(line => this.branchStations[line.id()] = line.stations()[0].id);
   }
 
   searchSubline(stationId: number) {
-    return _.find(this.subLines, line => 0 <= line.stations().map(st => st.id).indexOf(stationId));
+    return this.subLines.find(line => 0 <= line.stations().map(st => st.id).indexOf(stationId));
   }
 
   draw() {
@@ -78,7 +76,7 @@ export class Drawer {
     const trainWidth = this.trains.map(train => train.count).reduce((x, y) => x + y) * TRAIN_WIDTH;
     const width = xPos + trainWidth;
     this.subLines.forEach(line => {
-      const transferMainIdx = _.findIndex(this.mainLine.stations, (st => st.id === line.transfer.id));
+      const transferMainIdx = this.mainLine.stations.findIndex(st => st.id === line.transfer.id);
       const transferSubIdx = line.transferIdx();
       const height = (transferMainIdx - transferSubIdx + (transferSubIdx == 0 ? 2.5 : -1.5)) * STATION_HEIGHT;
       this.drawStations(line.singleLineStations(), width + (line.xPos() || 0) * TRAIN_WIDTH, height);
@@ -154,21 +152,24 @@ export class Drawer {
   }
 
   drawTrainName(yPos: number) {
-    _(this.trains)
-      .filter(train => train.name != null)
-      .sortBy(train => -train.speed)
-      .uniqBy(train => train.name)
-      .forEach((train, idx) => {
-        const left = new Position(STATION_HEIGHT * 0.5, yPos + STATION_HEIGHT * (idx + 0.5));
-        const right = left.addX(TRAIN_NAME_LINE_LENGTH);
-        const circleStyle = train.style().station();
-        this.snap.circle(left.x, left.y, STOP_SIZE).attr(circleStyle);
-        this.snap.circle(right.x, right.y, STOP_SIZE).attr(circleStyle);
-        this.drawPath(left, right, train.style().line());
-        const text = this.snap.text(right.x + STATION_HEIGHT * 2, right.y, train.name!);
-        text.attr(DEFAULT_FONT);
-        this.expandSnap(text);
-      });
+    const namedTrains = this.trains.filter(train => train.name != null);
+    namedTrains.sort((a, b) => b.speed - a.speed);
+    const seenNames = new Set<string>();
+    const uniqueTrains = namedTrains.filter(train => {
+      if (train.name && !seenNames.has(train.name)) { seenNames.add(train.name); return true; }
+      return false;
+    });
+    uniqueTrains.forEach((train, idx) => {
+      const left = new Position(STATION_HEIGHT * 0.5, yPos + STATION_HEIGHT * (idx + 0.5));
+      const right = left.addX(TRAIN_NAME_LINE_LENGTH);
+      const circleStyle = train.style().station();
+      this.snap.circle(left.x, left.y, STOP_SIZE).attr(circleStyle);
+      this.snap.circle(right.x, right.y, STOP_SIZE).attr(circleStyle);
+      this.drawPath(left, right, train.style().line());
+      const text = this.snap.text(right.x + STATION_HEIGHT * 2, right.y, train.name!);
+      text.attr(DEFAULT_FONT);
+      this.expandSnap(text);
+    });
   }
 
   private drawPath(pos1: Position, pos2: Position, params: Object) {

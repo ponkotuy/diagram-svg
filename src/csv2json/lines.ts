@@ -1,5 +1,3 @@
-import _ = require('lodash');
-
 import {TrainStops} from "./trainStops";
 import {Line} from "../common/line";
 import {DiagramAttrs} from "./diagramAttrs";
@@ -27,19 +25,19 @@ export class Lines {
   }
 
   findLineFromStation(station: number) {
-    return _.find(this.lines(), line => line.hasStation(station))
+    return this.lines().find(line => line.hasStation(station))
   }
 
   findSub(lineId: number) {
-    return _.find(this.subs, line => line.id == lineId)
+    return this.subs.find(line => line.id == lineId)
   }
 
   branchStation(lineId: number): number | undefined {
     const line = this.findSub(lineId);
     if(line == undefined) return undefined;
     const mainStations = this.main.stations.map(st => st.id);
-    return _.find(mainStations, st => st == line.stations[0].id) ||
-      _.find(mainStations, st => st == line.stations[line.stations.length - 1].id)
+    return mainStations.find(st => st == line.stations[0].id) ||
+      mainStations.find(st => st == line.stations[line.stations.length - 1].id)
   }
 
   compareStation(x: number, y: number): Order | null {
