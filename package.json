@@ -10,7 +10,7 @@
     "@types/qunit": "^2.9.0",
     "@types/raphael": "^2.1.30",
     "papaparse": "^5.1.1",
-    "qunit": "^2.9.3",
+    "qunit": "^2.25.0",
     "raphael": "^2.3.0",
     "ts-loader": "^9.5",
     "typescript": "^5.7",
